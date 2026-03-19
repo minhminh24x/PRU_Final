@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": "u_demo",
+      "username": "demo",
+      "displayName": "Demo Player",
+      "passwordHash": "$2b$10$UJCNwDDXhqPi2ep50pEW6e171./ve8tayu7ClYTDzWX8xIvGk0i2y",
+      "createdAt": "2026-03-18T00:00:00.000Z",
+      "lastLoginAt": null,
+      "level": 12,
+      "exp": 3450,
+      "coin": 9876,
+      "hp": { "current": 320, "max": 450 },
+      "mp": { "current": 80, "max": 120 },
+      "stats": {
+        "strength": 25,
+        "agility": 18,
+        "intelligence": 14,
+        "defense": 22,
+        "criticalRate": 0.12,
+        "criticalDamage": 1.5
+      }
+    }
+  ]
+}
+

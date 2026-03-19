@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afeccd394275f44f8b109d202cbb98b, type: 3}
+  m_Name: BaMia
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: BaMia
+  icon: {fileID: 1140105543509727327, guid: d5d6bf763e83a98438d4e2e836f6c421, type: 3}
+  description: 
+  itemType: 0
+  equipSlot: 0
+  stackable: 1
+  maxStack: 5
+  healAmount: 100
+  manaAmount: 50
+  buffDuration: 5
+  buffDamagePercent: 5
+  bonusDEF: 0
+  bonusSTR: 0
+  bonusINT: 0
+  bonusAGI: 0
+  buyPrice: 0
+  sellPrice: 0

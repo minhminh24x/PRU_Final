@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebLading - Đăng nhập</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="header">
+          <div class="brand">WebLading</div>
+          <div class="subtitle">Đăng nhập để xem dữ liệu nhân vật (read-only)</div>
+        </div>
+
+        <% if (error) { %>
+          <div class="alert"><%= error %></div>
+        <% } %>
+
+        <form method="POST" action="/login" class="form">
+          <label class="label">
+            Username
+            <input name="username" class="input" placeholder="demo" autocomplete="username" required />
+          </label>
+
+          <label class="label">
+            Password
+            <input
+              name="password"
+              type="password"
+              class="input"
+              placeholder="demo123"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+
+          <button type="submit" class="button">Đăng nhập</button>
+
+          <div class="hint">
+            <% if (mongoEnabled) { %>
+              Đang dùng MongoDB (dữ liệu thật từ game).
+            <% } else { %>
+              Tài khoản mẫu: <span class="mono">demo / demo123</span>
+            <% } %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+

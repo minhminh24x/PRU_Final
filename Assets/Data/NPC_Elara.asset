@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845fa7796d6f7ec44a6ed46ae44909a4, type: 3}
+  m_Name: NPC_Elara
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Elara
+  portrait: {fileID: 7264182050183361747, guid: 1bb212f52b46b4404b27adc654e7dbdd, type: 3}
+  portraitController: {fileID: 9100000, guid: 5183ecfbae2523b4a8ebc03ca02eb197, type: 2}
+  dialogueLines:
+  - "\"D\u1EEBng l\u1EA1i. Tr\u01B0\u1EDBc khi b\u01B0\u1EDBc v\xE0o c\xE1c C\xF5i,
+    c\u1EADu c\u1EA7n hi\u1EC3u nh\u1EEFng g\xEC \u0111ang \u0111\u1EE3i \u1EDF \u0111\xF3.\""
+  - "\"B\u1ED1n nguy\xEAn t\u1ED1: \u0110\u1EA5t \u2013 N\u01B0\u1EDBc \u2013 L\u1EEDa
+    \u2013 Kh\xED. M\u1ED7i c\xF5i c\xF3 m\u1ED9t Titan b\u1ECB Malakor bi\u1EBFn
+    th\xE0nh c\xF4ng c\u1EE5.\""
+  - "\"C\u1EADu kh\xF4ng chi\u1EBFn \u0111\u1EA5u v\u1EDBi k\u1EBB th\xF9 \u2013
+    c\u1EADu \u0111ang gi\u1EA3i tho\xE1t h\u1ECD. H\xE3y nh\u1EDB \u0111i\u1EC1u
+    \u0111\xF3.\""
+  - "\"Mana r\u1EA5t quan tr\u1ECDng. \u0110\u1EEBng bao gi\u1EDD Dash m\xE0 kh\xF4ng
+    c\xE2n nh\u1EAFc. C\u1EA7m l\u1EA5y \u0111\xE2y.\""
+  repeatDialogueLines:
+  - "\"C\u1EADu v\u1EABn s\u1ED1ng... T\u1ED1t l\u1EAFm. Tri th\u1EE9c ta truy\u1EC1n
+    kh\xF4ng l\xE3ng ph\xED. Ti\u1EBFp t\u1EE5c \u0111i \u2013 th\u1EBF gi\u1EDBi
+    \u0111ang ch\u1EDD.\""
+  rewardItem: {fileID: 11400000, guid: 364e1e153dc85bc46a81b2cf31755b90, type: 2}
+  rewardAmount: 2
+  rewardManaDirect: 0

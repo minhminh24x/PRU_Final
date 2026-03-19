@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebLading - <%= user.username %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="topbar">
+        <div>
+          <div class="brand">WebLading</div>
+          <div class="subtitle">Trang xem dữ liệu nhân vật (không cho tương tác)</div>
+        </div>
+        <form method="POST" action="/logout">
+          <button class="button secondary" type="submit">Đăng xuất</button>
+        </form>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="sectionTitle">Thông tin</div>
+          <div class="kv">
+            <div class="k">Username</div>
+            <div class="v mono"><%= user.username %></div>
+          </div>
+          <div class="kv">
+            <div class="k">Display name</div>
+            <div class="v"><%= user.displayName || "-" %></div>
+          </div>
+          <div class="kv">
+            <div class="k">Level</div>
+            <div class="v"><%= user.level ?? "-" %></div>
+          </div>
+          <div class="kv">
+            <div class="k">EXP</div>
+            <div class="v"><%= user.exp ?? "-" %></div>
+          </div>
+          <div class="kv">
+            <div class="k">Coin</div>
+            <div class="v"><%= user.coin ?? "-" %></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="sectionTitle">HP / MP</div>
+          <div class="barBlock">
+            <div class="barLabel">
+              <span>HP</span>
+              <span class="mono"><%= user.hp?.current ?? 0 %> / <%= user.hp?.max ?? 0 %></span>
+            </div>
+            <div class="bar">
+              <div
+                class="barFill hp"
+                style="width: <%= user.hp?.max ? Math.min(100, Math.max(0, (user.hp.current / user.hp.max) * 100)) : 0 %>%"
+              ></div>
+            </div>
+          </div>
+
+          <div class="barBlock">
+            <div class="barLabel">
+              <span>Mana</span>
+              <span class="mono"><%= user.mp?.current ?? 0 %> / <%= user.mp?.max ?? 0 %></span>
+            </div>
+            <div class="bar">
+              <div
+                class="barFill mp"
+                style="width: <%= user.mp?.max ? Math.min(100, Math.max(0, (user.mp.current / user.mp.max) * 100)) : 0 %>%"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card wide">
+          <div class="sectionTitle">Chỉ số (Stats)</div>
+          <% const entries = user.stats ? Object.entries(user.stats) : []; %>
+          <% if (!entries.length) { %>
+            <div class="muted">Không có dữ liệu stats.</div>
+          <% } else { %>
+            <div class="statsGrid">
+              <% entries.forEach(([key, val]) => { %>
+                <div class="stat">
+                  <div class="statKey mono"><%= key %></div>
+                  <div class="statVal"><%= val %></div>
+                </div>
+              <% }) %>
+            </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="muted">
+          API JSON: <a href="/api/me" class="link mono">/api/me</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

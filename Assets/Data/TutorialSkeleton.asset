@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762f0e34d9783cb45a55e77bbf4230a0, type: 3}
+  m_Name: TutorialSkeleton
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  enemyName: Skeleton
+  maxHP: 30
+  damage: 5
+  expReward: 100
+  goldMin: 30
+  goldMax: 30
+  healthPotionChance: 1
+  manaPotionChance: 1
+  healthPotionValue: 50
+  manaPotionValue: 30
+  healthPotionPrefab: {fileID: 6308931885512972803, guid: c78778de83550f741b1da5cee5c0703e, type: 3}
+  manaPotionPrefab: {fileID: 6308931885512972803, guid: eaa24f3c5e7551a47b18be45ddfb4b95, type: 3}
+  goldPickupPrefab: {fileID: 9179745990139295933, guid: b34ded6951f01d942a59af1fb0cb1622, type: 3}
+  attackCooldown: 1
+  attackRadius: 0.5

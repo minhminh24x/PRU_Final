@@ -1,0 +1,569 @@
+﻿=== PAGE 1 ===
+Player 
+=== PAGE 2 ===
+Chỉ số Gốc  
+● DEF (Health Points): Máu tối đa. 
+● INT (Mana Points): Năng lượng dùng cho Skill (Fireball, Dash). 
+● STR (Strength): Tăng sát thương vật lý (Melee Damage). 
+● AGI (Agility): Tỷ lệ chí mạng và tốc độ đánh Crit Rate & Attack Speed. 
+Chỉ số cơ bản The Knight (Player):  
+● DEF: 100  
+● INT:  50  
+● STR: 10 
+● AGI: 5 
+1. Quy đổi giá trị điểm (Stat Conversion Formula) 
+ 
+1 điểm STR = +2 Sát thương vật lý (Melee Dmg). 
+1 điểm AGI = +0.5% Tỷ lệ chí mạng (Crit Rate) & +1% Tốc độ đánh (Atk Speed).  
+1 điểm DEF (nếu cộng vào Máu) = +10 HP tối đa. 
+1 điểm INT (nếu cộng vào Mana) = +5 MP tối đa. 
+  
+Cơ bản: Hồi 1 MP (mana point) mỗi giây. 
+Mỗi điểm INT cộng thêm: +0.2 MP (mana point) hồi mỗi giây. 
+2. Bảng Tiến Trình Cấp Độ (Level Progression Table) 
+ 
+ 
+Level EXP 
+Cần 
+Tổng EXP Tích 
+Lũy 
+Tổng Điểm Tự 
+Cộng 
+(Cumulative) 
+DEF 
+Gốc 
+(Base) 
+INT 
+Gốc 
+(Base) 
+STR 
+Gốc 
+AGI 
+Gốc 
+Ghi chú Tiến 
+độ Map 
+1 100 0 0 100 50 10 5 Start 
+Game 
+(Hub) 
+=== PAGE 3 ===
+2 200 100 2 110 55 10 5 Map 2: 
+Earth (Bắt 
+đầu) 
+3 350 300 4 120 60 10 5 Map 2: 
+Earth 
+(Giữa) 
+4 500 650 6 130 65 10 5 Boss 
+Rannoch 
+5 700 1150 8 140 70 10 5 Map 3: 
+Water (Bắt 
+đầu) 
+6 900 1850 10 150 75 10 5 Boss 
+Scylla 
+7 120
+0 
+2750 12 160 80 10 5 Map 4: 
+Fire (Bắt 
+đầu) 
+8 150
+0 
+3950 14 170 85 10 5 Boss 
+Monstrosit
+y 
+9 200
+0 
+5450 16 180 90 10 5 Map 5: Air 
+(Bắt đầu) 
+10 - 7450 18 190 95 10 5 Final Boss 
+(Sanctyrix
+) 
+ 
+=== PAGE 4 ===
+ 
+=== PAGE 5 ===
+Player_Detailed 
+=== PAGE 6 ===
+1. Nhóm Chỉ số Gốc (Primary Stats - Đã có) 
+STR: Tăng sát thương. 
+DEF: Tăng Max HP. 
+INT: Tăng Max MP & Hồi MP. 
+AGI: Tăng Crit Rate & Attack Speed. 
+2. Nhóm Chỉ số Chiến đấu & Cơ chế ẩn (Combat 
+& Hidden Mechanics) 
+Những chỉ số này không cộng điểm trực tiếp mà được tính toán từ chỉ số gốc hoặc là hằng 
+số (Const). 
+ 
+Tên biến 
+(Variable) 
+Giá trị 
+khởi 
+điểm 
+Công thức / 
+Ghi chú 
+Tác dụng 
+Defense (Giáp) 0 (Có thể thêm 
+nếu mặc đồ) 
+Giảm sát thương nhận vào (Flat 
+reduction). 
+Crit Rate 5% 5% + (AGI * 
+0.5%) 
+Tỷ lệ đánh x2 sát thương. 
+Crit Damage 150% 1.5x (Cố định) Sát thương khi chí mạng. 
+Attack 
+Cooldown 
+0.5s 0.5s - (AGI * 
+0.005s) 
+Thời gian chờ giữa 2 lần chém 
+thường. Min 0.2s. 
+I-Frame 
+Duration 
+1.0s Cố định Thời gian bất tử sau khi bị dính 
+đòn (để tránh bị quái quây chết 
+ngay lập tức). 
+=== PAGE 7 ===
+Knockback 
+Resist 
+0 Cố định Khả năng kháng bị đẩy lùi (Có 
+thể tăng khi bật Skill Đất). 
+3. Nhóm Chỉ số Vật lý (Physics & Movement - 
+Quan trọng cho Unity) 
+Hưng sẽ cần các số này để chỉnh Rigidbody2D. Đây là "cảm giác game" (Game Feel). 
+ 
+Tên biến 
+(Variable) 
+Giá trị 
+đề xuất 
+Giải thích cho Dev 
+Move Speed 6.0f Tốc độ chạy thường. 
+Jump Force 14.0f Lực nhảy (đủ để nhảy qua block cao 3-4 unit). 
+Gravity Scale 3.5f Trọng lực (Game platformer cần trọng lực cao để 
+nhân vật rơi nhanh, tạo cảm giác chắc chắn, không bị 
+"bay bay" như mặt trăng). 
+Coyote Time 0.15s Thời gian cho phép nhảy sau khi vừa rời khỏi mép 
+vực (Giúp game không bị ức chế). 
+Dash Force 20.0f Lực lướt đi (Dùng cho Skill Dash). 
+Dash 
+Duration 
+0.2s Thời gian lướt. 
+Dash 
+Cooldown 
+1.5s Thời gian hồi chiêu lướt. 
+ 
+=== PAGE 8 ===
+Monster 
+=== PAGE 9 ===
+MAP 1: EARTH REALM (Tutorial - Dễ) 
+Tổng quái dự kiến toàn map: ~45 con 
+ 
+Archetype Tên Quái ( 
+hoạt ảnh 
+của nó)  
+HP Dmg EXP Hành vi (AI Logic) 
+Type 1 
+(Melee) 
+Skeleton 30 5 10 Đi bộ tới lui. Thấy Player 
+thì chạy tới đấm. 
+Type 2 
+(Ranged) 
+Archer 25 8 15 Đứng yên bắn tên 
+(Projectile bay thẳng). 
+Type 3 
+(Tanker) 
+Moss 
+Golem 
+60 10 25 Đi rất chậm. Chặn đòn 
+đánh phía trước (Block). 
+Phải nhảy ra sau lưng 
+đánh. 
+Type 4 
+(Flying) 
+Cave Bat 20 6 15 Bay hình sin. Khó đánh 
+trúng nhưng máu giấy (1 
+hit là chết). 
+ 
+MAP 2: WATER REALM (Trung bình - Slow & 
+Crowd) 
+Tổng quái dự kiến toàn map: ~55 con 
+ 
+Archetype Tên 
+Quái 
+HP Dmg EXP Hành vi (AI Logic) 
+=== PAGE 10 ===
+Type 1 
+(Melee) 
+Crab 50 12 25 Thấp bé (Hitbox nhỏ). Di 
+chuyển ngang nhanh. 
+Type 2 
+(Ranged) 
+Spitter 40 15 30 Bắn đạn nước theo đường 
+vòng cung (Parabola). Gây 
+chậm (Slow). 
+Type 3 
+(Tanker) 
+Turtle 100 18 45 Khi bị đánh thì thu mình vào 
+mai (Invulnerable trong 2s). 
+Sau đó xoay người tấn 
+công. 
+Type 4 
+(Flying) 
+Seagull 35 15 30 Sà xuống (Swoop) theo 
+đường chéo để mổ Player 
+rồi bay lên lại. 
+ 
+MAP 3: FIRE REALM (Khó - High Damage) 
+Tổng quái dự kiến toàn map: ~65 con 
+ 
+Archetype Tên Quái HP Dmg EXP Hành vi (AI Logic) 
+Type 1 
+(Melee) 
+Imp 80 25 45 Chạy cực nhanh. Khi chết 
+tự phát nổ sau 1s. 
+Type 2 
+(Ranged) 
+Pyro 60 30 50 Bắn đạn lửa nổ lan (AOE). 
+Player đứng gần tường 
+vẫn dính sát thương. 
+Type 3 
+(Tanker) 
+Obsidian 180 40 80 To lớn. Miễn nhiễm 
+knockback. Đòn đánh đẩy 
+=== PAGE 11 ===
+lùi Player rất xa (dễ rớt 
+xuống dung nham). 
+Type 4 
+(Flying) 
+Hell Bat 50 28 55 Thả bom lửa từ trên cao 
+xuống thẳng đầu Player. 
+ 
+MAP 4: AIR REALM (Nightmare - Platforming) 
+Tổng quái dự kiến toàn map: ~60 con (Ít hơn nhưng chất lượng) 
+ 
+Archetype Tên Quái HP Dmg EXP Hành vi (AI Logic) 
+Type 1 
+(Melee) 
+Wind 
+Walker 
+120 35 70 Có thể Dash xuyên qua 
+người Player. 
+Type 2 
+(Ranged) 
+Cloud 
+Mage 
+90 40 80 Bắn tia sét (Hitscan - 
+không thể né bằng cách 
+chạy, phải nấp/Block). 
+Type 3 
+(Tanker) 
+Guardian 250 50 120 Cầm khiên to. Chỉ nhận 
+sát thương khi Player 
+phản đòn (Parry) hoặc 
+đánh từ trên đầu xuống. 
+Type 4 
+(Flying) 
+Harpy 80 45 90 Luôn bay lơ lửng ngoài 
+tầm với của kiếm. Chỉ 
+đánh được khi nó lao vào 
+tấn công. 
+ 
+3. Phân bổ quái cho từng Scene (Enemy Density) 
+=== PAGE 12 ===
+Mỗi Map có 6 Scenes (5 Scene đi màn + 1 Scene Boss). Dưới đây là công thức spawn quái 
+để tạo nhịp độ (Pacing) tốt nhất. 
+Cấu trúc 1 Scene tiêu chuẩn (Dài khoảng 1-2 phút chơi): 
+● Tổng số quái: 10 - 15 con. 
+● Nguyên tắc: Không bao giờ đặt Type 2 (Ranged) ở chỗ Player không thể nhảy tới 
+được ngay. Không đặt Type 3 (Tanker) ở mép vực. 
+Chi tiết phân bổ: 
+1. Map Earth (Ưu tiên cơ bản) 
+● Số lượng: 8-10 quái/scene. 
+● Tỉ lệ: 
+○ 50% Type 1 (Skeleton) - Để người chơi sướng tay. 
+○ 30% Type 2 (Archer) - Tập né đạn. 
+○ 10% Type 3 - Tập phá giáp. 
+○ 10% Type 4 - Giới thiệu quái bay. 
+2. Map Water (Ưu tiên số lượng & khó chịu) 
+● Số lượng: 12-14 quái/scene. 
+● Tỉ lệ: 
+○ 40% Type 1 (Crab). 
+○ 20% Type 2 (Spitter) - Đặt ở các bệ cao khó với tới. 
+○ 20% Type 3 (Turtle) - Chặn đường hẹp. 
+○ 20% Type 4 (Seagull) - Quấy rối khi đang nhảy qua vực. 
+3. Map Fire (Ưu tiên sát thương & Tank) 
+● Số lượng: 14-16 quái/scene (Đông và hung hãn). 
+● Tỉ lệ: 
+○ 30% Type 1 (Imp) - Lao vào tự sát. 
+○ 30% Type 2 (Pyro) - Hỏa lực mạnh. 
+○ 30% Type 3 (Obsidian) - Ép người chơi phải giao tranh lâu. 
+○ 10% Type 4. 
+4. Map Air (Ưu tiên kỹ năng bay nhảy) 
+● Số lượng: 10-12 quái/scene (Ít nhưng vị trí hiểm hóc). 
+● Tỉ lệ: 
+○ 20% Type 1. 
+○ 30% Type 2 (Mage) - Bắn lén từ xa. 
+○ 10% Type 3. 
+○ 40% Type 4 (Harpy) - Map này là sân chơi của quái bay, ép Player phải nhảy 
+và đánh trên không liên tục. 
+ 
+=== PAGE 13 ===
+Boss' 
+=== PAGE 14 ===
+1. Boss Map 2: Rannoch, The Earth Titan (Hệ Đất) 
+Concept: Một hiệp sĩ khổng lồ bằng đá rêu phong. Chậm chạp nhưng đòn đánh cực nặng. 
+● Stats (Tham chiếu Player Lv 4): 
+○ HP: 500 
+○ Damage: 15 (Vật lý) 
+○ Cơ chế: Có lớp giáp ảo (Super Armor) - không bị khựng (Stun) khi dính đòn. 
+● Behavior (Hành vi): 
+○ Phase 1 (100% - 50% HP): 
+■ Move 1 - Titanic Smash: Giơ chùy lên cao (Telegraph 1.5s) rồi đập 
+xuống. Gây sát thương lan (AOE) nhỏ ngay điểm chạm. 
+■ Move 2 - Rock Throw: Ném một tảng đá lăn về phía Player. Player 
+phải nhảy qua. 
+○ Phase 2 (< 50% HP - Enrage): 
+■ Mắt phát sáng đỏ. Tốc độ đánh tăng 20%. 
+■ Skill Ultimate - Earthquake: Nhảy lên cao và dậm xuống đất. Tạo sóng 
+chấn động toàn màn hình mặt đất. 
+■ Counter: Player bắt buộc phải Nhảy (Jump) đúng nhịp dậm chân để 
+né. 
+ 
+2. Boss Map 3: Scylla, The Abyssal Queen (Hệ Nước) 
+Concept: Một pháp sư người cá/naga. Không di chuyển nhiều, chủ yếu dùng phép. 
+● Stats (Tham chiếu Player Lv 6): 
+○ HP: 750 
+○ Damage: 22 (Phép) 
+○ Cơ chế: Hitbox nhỏ, khó đánh trúng. 
+● Behavior (Hành vi): 
+○ Phase 1 (100% - 50% HP): 
+■ Move 1 - Water Bullet: Bắn 3 đạn nước theo hình nón (Fan shape). 
+■ Move 2 - Geyser Trap: Tạo vòng tròn cảnh báo dưới chân Player, sau 
+1s cột nước phun lên hất tung Player. 
+○ Phase 2 (< 50% HP - Splitting Mechanic): 
+■ Mechanic: Boss biến mất và tách thành 2 Bản Thể (Clones). 
+■ Clone A (Màu xanh đậm): Chỉ bắn đạn. (HP 300) 
+■ Clone B (Màu xanh nhạt): Chỉ hồi máu cho Clone A. (HP 300) 
+■ Chiến thuật: Player phải giết Clone B trước, nếu không Clone A sẽ bất 
+tử. 
+ 
+3. Boss Map 4: The Molten Monstrosity (Hệ Lửa) 
+=== PAGE 15 ===
+Concept: Một quái thú dạng thú (Beast) rực lửa. Hung hăng, liên tục lao vào Player. 
+● Stats (Tham chiếu Player Lv 8): 
+○ HP: 1200 
+○ Damage: 40 (Hỗn hợp) 
+○ Cơ chế: Gây sát thương theo thời gian (Burn) nếu đứng quá gần. 
+● Behavior (Hành vi): 
+○ Phase 1 (100% - 40% HP): 
+■ Move 1 - Charge: Cúi đầu xuống (Telegraph 1s) rồi húc thẳng sang 
+phía đối diện màn hình. Nếu đâm vào tường sẽ bị choáng 2s (Cơ hội 
+để Player đánh). 
+■ Move 2 - Lava Spit: Phun bãi nhầy dung nham xuống sàn. Player 
+giẫm vào mất máu. 
+○ Phase 2 (< 40% HP - Berserk): 
+■ Cơ thể bốc lửa dữ dội. Không còn bị choáng khi đâm tường. 
+■ Move 3 - Meteor Rain: Gầm lên, đá lửa rơi ngẫu nhiên từ trên trời 
+xuống. Yêu cầu Player vừa né Charge vừa né đá rơi. 
+ 
+4. Boss Map 5: Sanctyrix, The Storm Herald (Hệ Khí) 
+Concept: Một thiên thần sa ngã (Fallen Angel) với đôi cánh rách. Bay lơ lửng, không chạm 
+đất. 
+● Stats (Tham chiếu Player Lv 9): 
+○ HP: 1000 (Máu ít hơn boss Lửa vì khó đánh trúng hơn) 
+○ Damage: 50 
+○ Cơ chế: Bay liên tục (Flying Pathfinding). Map có nhiều Platform để Player 
+nhảy lên đánh. 
+● Behavior (Hành vi): 
+○ Phase 1: 
+■ Move 1 - Wind Blade: Vỗ cánh bắn lưỡi gió hình bán nguyệt (Cần 
+Dash xuyên qua để né - I-frame). 
+■ Move 2 - Swoop: Lao vút từ trên cao xuống vị trí Player (Giống Harpy 
+nhưng nhanh hơn). 
+○ Phase 2 (< 30% HP): 
+■ Skill Ultimate - Tornado Wall: Triệu hồi 2 cơn lốc xoáy di chuyển từ 2 
+bên màn hình vào giữa. Player bị ép vào khu vực chật hẹp ở giữa để 
+solo với Boss. 
+ 
+5. Map 6: The Void Keep (Map Cuối - Boss Rush & Final Boss) 
+Đây là map thử thách kỹ năng tổng hợp. Không có quái thường (minions), chỉ có các phòng 
+đánh Boss liên tiếp. 
+Cấu trúc Map (Scene Flow): 
+=== PAGE 16 ===
+1. Room 1: Checkpoint & Shop (Mua máu lần cuối). 
+2. Room 2: Void Rannoch & Void Scylla (Boss Rush 1). 
+3. Room 3: Checkpoint (Hồi 50% HP). 
+4. Room 4: Void Monstrosity & Void Sanctyrix (Boss Rush 2). 
+5. Room 5: The Final Showdown. 
+Cơ chế Boss Rush (Tái sử dụng Assets cũ + Đổi màu): 
+● Void Rannoch (Đen/Tím): Máu giảm còn 70% so với gốc, nhưng Tốc độ đánh tăng 
+gấp đôi. 
+● Void Scylla: Không phân thân nữa, nhưng bắn đạn nhiều gấp 3 lần (Bullet Hell). 
+● Void Monstrosity: Để lại vệt lửa tím gây sát thương vĩnh viễn (không biến mất). 
+● Void Sanctyrix: Luôn ở trạng thái Phase 2 (Tornado). 
+Lưu ý: Giữa các Boss trong cùng 1 Room sẽ có khoảng nghỉ 5 giây để Player thở. 
+ 
+FINAL BOSS: MALAKOR, THE VOID EMPEROR ( linh hoạt theo năng lực) 
+Lore: Kẻ đã đập vỡ Tetra Core. Hắn sử dụng sức mạnh hỗn mang, có thể mô phỏng lại 
+chiêu thức của 4 hệ. 
+● Player Stats: Level 10 Max (HP ~200 | Dmg ~45) 
+● Boss Stats: 
+○ HP: 2500 (Rất trâu) 
+○ Damage: 45 - 60 
+○ Logic: Đánh theo 3 Phase rõ rệt. 
+Phase 1: The Duelist (100% - 70% HP) 
+● Hình dáng người, cầm kiếm bóng tối. Đánh cận chiến (Melee). 
+● Move: Chém chuỗi 3 đòn (Combo Attack). 
+● Mechanic: Teleport ra sau lưng Player và chém lén. Player phải phản xạ nhanh quay 
+lại đỡ hoặc Dash đi. 
+Phase 2: Elemental Master (70% - 30% HP) 
+● Bay lên giữa màn hình, triệu hồi sức mạnh 4 hệ ngẫu nhiên: 
+● Earth Stance: Tự tạo giáp ảo (Player phải đánh vỡ giáp mới trừ HP thật). 
+● Fire Stance: Phun lửa quét ngang màn hình (Laser Beam). 
+● Water Stance: Hồi 50 HP mỗi 5 giây (Player phải đánh dồn damage để chặn hồi 
+máu). 
+● Air Stance: Đẩy lùi Player liên tục bằng gió. 
+Phase 3: The Void Collapse (30% - 0% HP - Desperation) 
+● Biến thành quái vật khổng lồ chiếm 1/3 màn hình. 
+● Ultimate Move: "The End". Màn hình tối sầm, chỉ có các luồng sáng tím chiếu xuống 
+(Safe Zones). Player phải đứng vào đúng chỗ sáng để không chết. 
+=== PAGE 17 ===
+● Tần suất tấn công cực cao. Đây là cuộc đua DPS (Damage Per Second) - Player 
+phải giết Boss trước khi hết bình máu. 
+ 
+Gợi ý cho Dev: 
+● Tái sử dụng: Code của Malakor Phase 2 thực chất là gọi lại hàm tấn công của 4 
+Boss trước, chỉ đổi VFX sang màu tím. Điều này giúp tiết kiệm thời gian code cho 
+Hưng & Lộc. 
+● Map 6: Không cần thiết kế Tilemap cầu kỳ, chỉ cần 1 đấu trường phẳng (Arena) đẹp 
+và hoành tráng. 
+ 
+ 
+=== PAGE 18 ===
+Skill 
+=== PAGE 19 ===
+ 
+Tên 
+Skill 
+Hệ Mở 
+khóa 
+tại 
+MP 
+Cost 
+Cooldown Mô tả hiệu ứng 
+(Effect Logic) 
+Dash 
+(Lướt) 
+Wind (Cơ 
+bản) 
+Đầu 
+game 
+10 
+MP 
+1.5s Lướt nhanh về phía 
+trước. Trong lúc lướt 
+được Bất tử 
+(Invincible). Dùng 
+để né đòn hoặc qua 
+vực xa. 
+Heavy 
+Strike 
+Earth Sau 
+Boss 
+Map 2 
+20 
+MP 
+5s Triệu hồi gai gây 
+damge  
+Aqua 
+Heal 
+Water Sau 
+Boss 
+Map 3 
+40 
+MP 
+15s Hồi phục 30 HP ngay 
+lập tức. Đứng yên 1s 
+để niệm chú (Rủi ro 
+cao). 
+Flame 
+Burst 
+Fire Sau 
+Boss 
+Map 4 
+30 
+MP 
+3s Bắn ra cầu lửa bay 
+thẳng. Gây 100% 
+Magic DMG. (Giúp 
+đánh Boss bay ở 
+Map cuối). 
+Storm 
+Wing 
+Air 
+(Ultimate) 
+Sau 
+Boss 
+Map 5 
+50 
+MP 
+20s (Optional) Cho phép 
+bay lơ lửng hoặc 
+Nhảy 2 lần (Double 
+Jump) trong 10s. 
+ 
+=== PAGE 20 ===
+ITEMS & SHOP 
+=== PAGE 21 ===
+1. Consumables (Tiêu thụ) 
+ 
+Tên Item Loại Giá Mua 
+(Shop) 
+Giá 
+Bán 
+Tác dụng Stack 
+Max 
+Health 
+Potion 
+Hồi 
+phục 
+50 Gold 10 
+Gold 
+Hồi ngay lập tức 50 
+HP. 
+5 chai 
+Mana 
+Potion 
+Hồi 
+phục 
+30 Gold 5 Gold Hồi ngay lập tức 30 
+MP. 
+5 chai 
+Elixir Buff 200 Gold 50 
+Gold 
+Tăng +10% 
+Damage trong 60s. 
+1 chai 
+ 
+2. Key Items (Vật phẩm nhiệm vụ - Không bán) 
+ 
+Tên Item Nơi lấy Tác dụng 
+Earth 
+Shard 
+Boss Rannoch Mở khóa cổng sang Map Water. Mở khóa skill 
+Heavy Strike. 
+Water 
+Shard 
+Boss Scylla Mở khóa cổng sang Map Fire. Mở khóa skill 
+Aqua Heal. 
+Fire Shard Boss Monstrosity Mở khóa cổng sang Map Air. Mở khóa skill 
+Flame Burst. 
+Air Shard Boss Sanctyrix Ghép thành Tetra Core hoàn chỉnh -> End 
+Game. 
+ 
+=== PAGE 22 ===
+3. Kinh tế (Economy Balancing) Để người chơi không mua quá nhiều máu làm game quá 
+dễ: 
+● Gold Drop: 
+○ Quái thường: 1 - 3 Gold. 
+○ Quái to (Tanker): 5 - 8 Gold. 
+○ Boss: 100 - 200 Gold. 
+● Tính toán: Để mua 1 bình máu (50 Gold), người chơi phải giết khoảng 20 con quái 
+thường (tương đương dọn 2 Scene). Đây là tỷ lệ cân bằng hợp lý. 
+ 

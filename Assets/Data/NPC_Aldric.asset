@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845fa7796d6f7ec44a6ed46ae44909a4, type: 3}
+  m_Name: NPC_Aldric
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: NPC
+  portrait: {fileID: -855298285791758126, guid: 414998b92a11357479b6059fc176c1cb, type: 3}
+  portraitController: {fileID: 9100000, guid: c6e8a1f4bfd492749b0b55e024c80044, type: 2}
+  dialogueLines:
+  - "\"Ng\u1ED3i xu\u1ED1ng. Ta k\u1EC3 chuy\u1EC7n chi\u1EBFn tr\u01B0\u1EDDng m\u1ED9t
+    ch\xFAt.\""
+  - "\"Ta \u0111\xE3 \u0111\u1ED1i m\u1EB7t Rannoch m\u1ED9t l\u1EA7n. C\xF2n s\u1ED1ng
+    l\xE0 nh\u1EDD may m\u1EAFn v\xE0 \u0111\xF4i ch\xE2n nhanh.\""
+  - "\"Ta \u0111\xE3 \u0111\u1ED1i m\u1EB7t Rannoch m\u1ED9t l\u1EA7n. C\xF2n s\u1ED1ng
+    l\xE0 nh\u1EDD may m\u1EAFn v\xE0 \u0111\xF4i ch\xE2n nhanh.\""
+  - "\"H\u1EAFn c\xF3 Super Armor \u2013 \u0111\u1EEBng th\u1EED kh\u1EF1ng h\u1EAFn,
+    v\xF4 ngh\u0129a. T\u1EADp trung n\xE9 v\xE0 \u0111\xE1nh nhanh.\""
+  - "\"Khi h\u1EAFn nh\u1EA3y l\xEAn \u2013 \u0111\xF3 l\xE0 Earthquake. C\xE1ch
+    duy nh\u1EA5t: NH\u1EA2Y \u0111\xFAng nh\u1ECBp h\u1EAFn d\u1EADm xu\u1ED1ng.\""
+  - "\"Tr\u1EC5 m\u1ED9t gi\xE2y \u2013 c\u1EADu v\u0103ng ng\u01B0\u1EE3c m\xE0
+    kh\xF4ng hi\u1EC3u v\xEC sao. B\u1ED5 sung th\u1EC3 l\u1EF1c tr\u01B0\u1EDBc
+    khi v\xE0o \u0111i.\""
+  repeatDialogueLines:
+  - "\"Kh\xF4ng c\xF3 g\xEC th\xEAm \u0111\u1EC3 n\xF3i. Ki\u1EBFm kinh nghi\u1EC7m
+    \u0111i \u2013 ch\u1EC9 c\xF3 th\u1EF1c chi\u1EBFn m\u1EDBi d\u1EA1y \u0111\u01B0\u1EE3c.\""
+  rewardItem: {fileID: 11400000, guid: c2853d4acd78c724f9bb791abb1a4739, type: 2}
+  rewardAmount: 1
+  rewardManaDirect: 0

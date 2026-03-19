@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/loginPage.unity
+    guid: ba64df4cf2364b94993725aa375d9cba
+  - enabled: 1
+    path: Assets/Scenes/menuGame.unity
+    guid: b7af2eea5f3139747a666101de9918fa
+  - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: b3427a966e13b9e468582ca6fc319643
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 3d2f1636ba5bfab40bfd5b9dfcfa7995
+  - enabled: 1
+    path: Assets/Scenes/overWorld.unity
+    guid: 72861ae628bb5304a94e25103fccc731
+  - enabled: 1
+    path: Assets/Scenes/Scene_Boss.unity
+    guid: ed052d4aeff574b439104985601e09fb
+  - enabled: 1
+    path: Assets/Scenes/Scene_Taget.unity
+    guid: c18e7f4d65b8a884eaf80352fa01b524
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 0
+    path: Assets/Scenes/Scene_1.unity
+    guid: 5737a6c98cf61904e9bdd66df25ea3cb
+  - enabled: 0
+    path: Assets/Scenes/Scene_1 1.unity
+    guid: 93bc191ea55a2e842a283092f1c46939
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_UseUCBPForAssetBundles: 0
