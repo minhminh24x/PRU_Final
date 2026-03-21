@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetra: The Shattered Realm - King of Games</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Landing specific "diêm dúa" & "nổ" styles */
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-top: -32px;
+    }
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 900;
+      margin: 0;
+      line-height: 1.1;
+      background: linear-gradient(to right, #fff, #c4b5fd, #8b5cf6, #22d3ee, #fff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
+      filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.5));
+      text-transform: uppercase;
+    }
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+    .hero-subtitle {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-top: 1.5rem;
+      max-width: 800px;
+      animation: fadeIn 2s ease-out;
+      text-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+      font-weight: 600;
+    }
+    .bombastic-tag {
+      background: linear-gradient(90deg, #ff0055, #ffcc00);
+      color: #000;
+      padding: 5px 15px;
+      font-weight: 900;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      transform: rotate(-2deg);
+      box-shadow: 0 0 20px #ff0055;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      from { transform: rotate(-2deg) scale(1); }
+      to { transform: rotate(-2deg) scale(1.1); }
+    }
+    .nav-landing {
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 30px;
+      background: rgba(13, 17, 39, 0.8);
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+      margin-bottom: 40px;
+    }
+    .nav-link {
+      color: var(--text);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+      padding: 8px 18px;
+      border-radius: 25px;
+    }
+    .nav-link:hover {
+      color: #fff;
+      background: var(--accent);
+      box-shadow: 0 0 15px var(--accent);
+    }
+    .section-glass {
+      padding: 80px 50px;
+      margin-bottom: 80px;
+      background: rgba(10, 14, 35, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 40px;
+      backdrop-filter: blur(25px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(139, 92, 246, 0.1);
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      margin-top: 50px;
+    }
+    .feature-card {
+      padding: 40px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 25px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      background: rgba(139, 92, 246, 0.08);
+      border-color: var(--accent2);
+      box-shadow: 0 20px 50px rgba(34, 211, 238, 0.2);
+    }
+    .download-btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      padding: 22px 50px;
+      font-size: 1.4rem;
+      font-weight: 900;
+      border-radius: 60px;
+      background: linear-gradient(45deg, #8b5cf6, #22d3ee, #d946ef);
+      background-size: 200% auto;
+      color: #fff;
+      box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+      margin-top: 40px;
+      transition: 0.5s;
+      animation: shine 3s infinite;
+      border: none;
+    }
+    .download-btn-hero:hover {
+      background-position: right center;
+      transform: scale(1.1) rotate(1deg);
+      box-shadow: 0 20px 60px rgba(139, 92, 246, 0.8);
+    }
+    .floating-ornaments span {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.4;
+      animation: float 15s infinite ease-in-out;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0,0) rotate(0); }
+      33% { transform: translate(30px, -50px) rotate(120deg); }
+      66% { transform: translate(-20px, 20px) rotate(240deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav-landing">
+      <a href="#intro" class="nav-link" id="nav-intro">Cốt Truyện Huyền Thoại</a>
+      <a href="/download" class="nav-link" id="nav-download">Tải Game Ngay</a>
+      <a href="/login" class="nav-link" id="nav-login">Đăng nhập</a>
+    </nav>
+
+    <header class="hero">
+      <div class="bombastic-tag">GTA 6 KHÔNG DÁM PHÁT HÀNH CÙNG NĂM</div>
+      <div class="floating-ornaments">
+        <span style="top: 10%; left: 5%; font-size: 50px; color: #8b5cf6;">◈</span>
+        <span style="top: 25%; right: 12%; font-size: 40px; color: #22d3ee;">✦</span>
+        <span style="bottom: 20%; left: 15%; font-size: 35px; color: #d946ef;">✧</span>
+        <span style="bottom: 30%; right: 8%; font-size: 45px; color: #f59e0b;">✯</span>
+      </div>
+      <h1 class="hero-title brand-glow">TETRA:<br>THE SHATTERED REALM</h1>
+      <p class="hero-subtitle">Siêu phẩm Platformer 2D định nghĩa lại toàn bộ ngành công nghiệp game thế giới. Đỉnh cao đồ họa Pixel Art Dark Fantasy mà bạn chưa từng thấy.</p>
+      <a href="/download" class="download-btn-hero glow-pulse">BẮT ĐẦU HÀNH TRÌNH VĨ ĐẠI</a>
+    </header>
+
+    <section id="intro" class="section-glass">
+      <h2 class="sectionTitle">Thiên Anh Hùng Ca: Aethelgard</h2>
+      <div style="font-size: 1.1rem; line-height: 1.8; color: #cbd5e1;">
+        <p><strong style="color: var(--gold);">Thế Giới Khởi Nguyên:</strong> Aethelgard từng là thiên đường vĩnh hằng, được duy trì bởi <strong>Tetra Core</strong> – một thực thể thần thánh giam giữ 4 nguồn sức mạnh nguyên tố (Đất - Nước - Lửa - Khí) trong thế cân bằng tuyệt đối.</p>
+        <p><strong style="color: var(--gold);">Ngày Tận Thế:</strong> <em>"The Void"</em> trỗi dậy, xé toạc Tetra Core. 4 Viên Đá Nguyên Tố thất lạc, biến các Hộ Vệ thành những quái vật điên cuồng. Sự cân bằng sụp đổ, bóng tối bao trùm vạn vật.</p>
+        <p><strong style="color: var(--gold);">Vị Cứu Tinh Thứ 5:</strong> Bạn thức tỉnh trong một bộ giáp rỗng tuếch. Bạn không phải người, bạn là <strong>The Vessel</strong> – Nguyên Tố Thứ 5, kẻ duy nhất có thể hấp thụ và chế ngự sức mạnh tàn khốc của các Elemental Gems mà không bị hủy diệt.</p>
+      </div>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="ornament" style="font-size: 40px;">🔥</div>
+          <h3>Lộ Trình Định Mệnh</h3>
+          <p>Hành trình tuyến tính khắc nghiệt: Earth -> Water -> Fire -> Air. Chỉ kẻ mạnh nhất mới có thể phá vỡ phong ấn để tiến tới Realm tiếp theo.</p>
+        </div>
+        <div class="feature-card">
+          <div class="ornament" style="font-size: 40px;">🧪</div>
+          <h3>Phát Triển Vô Hạn</h3>
+          <p>Hệ thống Light-RPG tùy biến cực sâu. Phân bổ Stats (STR/INT/DEF/AGI) để tạo ra lối chơi độc nhất vô nhị của riêng bạn.</p>
+        </div>
+        <div class="feature-card">
+          <div class="ornament" style="font-size: 40px;">💀</div>
+          <h3>Thử Thách Thần Thánh</h3>
+          <p>6 Scenes với hàng ngàn cạm bẫy môi trường và boss Guardians khổng lồ. Mọi sai lầm đều phải trả giá bằng mạng sống.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-glass" style="text-align: center; border-color: #ff0055;">
+      <h2 class="sectionTitle" style="justify-content: center; color: #ff0055;">Tại sao không có đối thủ?</h2>
+      <p style="font-style: italic; font-size: 1.2rem;">"Chúng tôi không làm game, chúng tôi tạo ra một tôn giáo mới cho dòng Platformer."</p>
+      <ul style="list-style: none; padding: 0; margin-top: 20px; color: #fff; font-weight: 700;">
+        <li style="margin-bottom: 10px;">✅ Gameplay Loop gây nghiện hơn bất kỳ chất kích thích nào.</li>
+        <li style="margin-bottom: 10px;">✅ Human-centric UI: Tinh giản đến mức hoàn mỹ, chỉ tập trung vào trải nghiệm.</li>
+        <li style="margin-bottom: 10px;">✅ Map-locking mechanism: Buộc bạn phải đối mặt với nỗi sợ hãi để tiến lên.</li>
+      </ul>
+      <a href="/download" class="button download-btn-hero" style="background: linear-gradient(45deg, #ff0055, #8b5cf6);">TIẾN VỚI TRANG TẢI XUỐNG</a>
+    </section>
+
+    <footer class="footer" style="justify-content: center; opacity: 0.6; padding-bottom: 40px;">
+      <p class="muted">&copy; 2026 Tetra: The Shattered Realm. Developed by Superstars for Superstars.</p>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      document.body.style.backgroundPosition = `${x * 15}px ${y * 15}px`;
+    });
+  </script>
+</body>
+</html>

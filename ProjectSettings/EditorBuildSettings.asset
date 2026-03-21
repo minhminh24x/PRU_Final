@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/overWorld.unity
     guid: 72861ae628bb5304a94e25103fccc731
   - enabled: 1
+    path: Assets/Scenes/hubMap.unity
+    guid: 7026a2ede35785343b752c5b093eeb65
+  - enabled: 1
     path: Assets/Scenes/Scene_Boss.unity
     guid: ed052d4aeff574b439104985601e09fb
   - enabled: 1

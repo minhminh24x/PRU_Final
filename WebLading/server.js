@@ -150,13 +150,27 @@ function requireAuth(req, res, next) {
 
 app.get("/", (req, res) => {
   if (req.session?.userId) return res.redirect("/me");
-  return res.redirect("/login");
+  res.render("index");
 });
 
 app.get("/login", (req, res) => {
   if (req.session?.userId) return res.redirect("/me");
   res.render("login", { error: null, mongoEnabled: isMongoEnabled() });
 });
+
+app.get("/download", (req, res) => {
+  res.render("download");
+});
+
+async function authenticateLocal(username, password) {
+  const users = await readUsers();
+  const user = users.find((u) => String(u.username).toLowerCase() === username.toLowerCase());
+  if (!user) return null;
+
+  const ok = await bcrypt.compare(password, user.passwordHash);
+  if (!ok) return null;
+  return user;
+}
 
 app.post("/login", async (req, res) => {
   const username = String(req.body?.username || "").trim();
@@ -171,26 +185,32 @@ app.post("/login", async (req, res) => {
   if (isMongoEnabled()) {
     try {
       const result = await getUserAndProgressFromMongoByCredentials(username, password);
-      if (!result) {
-        return res
-          .status(401)
-          .render("login", { error: "Sai username hoặc password.", mongoEnabled: true });
+      if (result) {
+        req.session.userId = result.userDoc._id.toString();
+        return res.redirect("/me");
       }
-      req.session.userId = result.userDoc._id.toString();
-      return res.redirect("/me");
-    } catch (e) {
+      // If result is null, it means wrong credentials in Mongo
       return res
-        .status(500)
-        .render("login", { error: `Lỗi kết nối MongoDB: ${e.message}`, mongoEnabled: true });
+        .status(401)
+        .render("login", { error: "Sai username hoặc password (MongoDB).", mongoEnabled: true });
+    } catch (e) {
+      console.error("MongoDB connection error, falling back to local:", e.message);
+      // Fallback to local
+      const user = await authenticateLocal(username, password);
+      if (user) {
+        req.session.userId = user.id;
+        return res.redirect("/me");
+      }
+      return res.status(401).render("login", {
+        error: `Lỗi kết nối MongoDB (${e.message}). Đăng nhập local cũng thất bại.`,
+        mongoEnabled: true
+      });
     }
   } else {
-    const users = await readUsers();
-    const user = users.find((u) => String(u.username).toLowerCase() === username.toLowerCase());
-    if (!user) return res.status(401).render("login", { error: "Sai username hoặc password.", mongoEnabled: false });
-
-    const ok = await bcrypt.compare(password, user.passwordHash);
-    if (!ok) return res.status(401).render("login", { error: "Sai username hoặc password.", mongoEnabled: false });
-
+    const user = await authenticateLocal(username, password);
+    if (!user) {
+      return res.status(401).render("login", { error: "Sai username hoặc password.", mongoEnabled: false });
+    }
     req.session.userId = user.id;
     return res.redirect("/me");
   }

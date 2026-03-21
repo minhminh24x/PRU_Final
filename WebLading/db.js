@@ -12,7 +12,11 @@ export async function getMongo() {
 
   if (!clientPromise) {
     const tlsAllowInvalid = String(process.env.MONGODB_TLS_INSECURE || "").toLowerCase() === "true";
-    const client = new MongoClient(uri, tlsAllowInvalid ? { tlsAllowInvalidCertificates: true } : {});
+    const client = new MongoClient(uri, {
+      ...(tlsAllowInvalid ? { tlsAllowInvalidCertificates: true } : {}),
+      connectTimeoutMS: 5000, // Timeout after 5 seconds
+      serverSelectionTimeoutMS: 5000 // Timeout for server discovery
+    });
     clientPromise = client.connect();
   }
 

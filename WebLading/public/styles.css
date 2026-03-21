@@ -460,3 +460,29 @@ body::before {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.4); border-radius: 999px; }
+
+/* ─── Extra Flamboyant Styles ─── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--shadow), var(--glow-purple); }
+  50% { box-shadow: var(--shadow), 0 0 50px rgba(139, 92, 246, 0.6); }
+}
+
+.glow-pulse {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+@keyframes text-glow {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.6)); }
+  50% { filter: drop-shadow(0 0 24px rgba(139, 92, 246, 0.9)); }
+}
+
+.brand-glow {
+  animation: text-glow 4s infinite ease-in-out;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
