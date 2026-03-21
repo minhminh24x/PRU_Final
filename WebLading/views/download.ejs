@@ -6,8 +6,38 @@
   <title>Tải Ngay Tetra: The Shattered Realm - Chỉ Dành Cho Siêu Sao</title>
   <link rel="stylesheet" href="/styles.css">
   <style>
+    .nav-landing {
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 30px;
+      background: rgba(13, 17, 39, 0.8);
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+      margin-bottom: 40px;
+    }
+    .nav-link {
+      color: var(--text);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+      padding: 8px 18px;
+      border-radius: 25px;
+    }
+    .nav-link:hover {
+      color: #fff;
+      background: var(--accent);
+      box-shadow: 0 0 15px var(--accent);
+    }
     .download-hero {
-      padding: 100px 20px;
+      padding: 80px 20px;
       text-align: center;
       background: radial-gradient(circle at center, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
     }
@@ -90,6 +120,12 @@
 </head>
 <body>
   <div class="container">
+    <nav class="nav-landing">
+      <a href="/#intro" class="nav-link" id="nav-intro">Cốt Truyện Huyền Thoại</a>
+      <a href="/download" class="nav-link" id="nav-download">Tải Game Ngay</a>
+      <a href="/login" class="nav-link" id="nav-login">Đăng Nhập</a>
+    </nav>
+
     <div class="download-hero">
       <div class="brand-glow" style="font-family: 'Cinzel', serif; font-size: 4rem; margin-bottom: 10px;">DOWNLOAD</div>
       <p class="hero-subtitle">Cân nhắc kỹ trước khi tải. Phần cứng của bạn có thực sự xứng đáng?</p>
@@ -135,7 +171,7 @@
         <div style="font-size: 50px; margin-bottom: 20px;">🪟</div>
         <h3>Windows Desktop</h3>
         <p class="muted">Bản chính thức (420GB)</p>
-        <a href="#" class="button glow-pulse" style="margin-top: 20px; display: block;">TẢI NGAY</a>
+        <a href="/download-game/windows" class="button glow-pulse" style="margin-top: 20px; display: block;">TẢI NGAY</a>
       </div>
       <div class="dl-card" style="opacity: 0.5; filter: grayscale(1);">
         <div style="font-size: 50px; margin-bottom: 20px;">🍎</div>
@@ -148,6 +184,19 @@
         <h3>PlayStation / Xbox</h3>
         <p class="muted">Sony và Microsoft đang xin lỗi vì console quá yếu.</p>
         <span class="button secondary" style="margin-top: 20px; display: block; cursor: not-allowed;">COMMING IN 2077</span>
+      </div>
+    </section>
+
+    <section class="section-glass" style="margin-top: 60px; padding: 40px; border-color: var(--accent2);">
+      <h2 class="sectionTitle" style="color: var(--accent2);">Hướng Dẫn Giải Nén & Chơi Game</h2>
+      <ol style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.8; margin-left: 20px;">
+        <li style="margin-bottom: 10px;"><strong>Bước 1:</strong> Chuẩn bị sẵn bình chữa cháy bên cạnh PC của bạn.</li>
+        <li style="margin-bottom: 10px;"><strong>Bước 2:</strong> Giải nén file <code style="color: var(--accent2);">Tetra_The_Shattered_Realm_Ultra.zip</code> vừa tải về bằng WinRAR hoặc 7-Zip.</li>
+        <li style="margin-bottom: 10px;"><strong>Bước 3:</strong> Mở thư mục vừa giải nén, tìm file có chữ <strong>.exe</strong> (Ví dụ: <code style="color: #ff0055;">Tetra.exe</code>).</li>
+        <li style="margin-bottom: 10px;"><strong>Bước 4:</strong> Click đúp chuột vào file <strong>.exe</strong> để bắt đầu trò chơi. Nhớ đội mũ bảo hiểm!</li>
+      </ol>
+      <div style="margin-top: 20px; padding: 15px; background: rgba(34, 211, 238, 0.1); border-left: 4px solid var(--accent2); font-style: italic; color: #fff;">
+        Lưu ý: Nếu màn hình của bạn bị chớp tắt liên tục, đó là do game đang đồng bộ hóa với hệ thần kinh trung ương của bạn. Cứ bình tĩnh!
       </div>
     </section>
 

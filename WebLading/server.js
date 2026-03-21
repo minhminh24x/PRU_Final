@@ -162,6 +162,19 @@ app.get("/download", (req, res) => {
   res.render("download");
 });
 
+app.get("/download-game/windows", (req, res) => {
+  const filePath = path.join(__dirname, "public", "downloads", "Tetra_Shattered_Realm_v1.0.zip");
+  // res.download will force the browser to prompt a "Save As" download dialog
+  res.download(filePath, "Tetra_The_Shattered_Realm_Ultra.zip", (err) => {
+    if (err) {
+      console.error("Lỗi khi tải game (hoặc bạn chưa bỏ file vào /public/downloads):", err);
+      if (!res.headersSent) {
+        res.status(404).send("File đã bay màu vì quá nặng! Hãy chắc chắn bạn đã tạo file zip trong thư mục public/downloads.");
+      }
+    }
+  });
+});
+
 async function authenticateLocal(username, password) {
   const users = await readUsers();
   const user = users.find((u) => String(u.username).toLowerCase() === username.toLowerCase());
