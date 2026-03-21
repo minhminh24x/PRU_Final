@@ -202,13 +202,18 @@ app.post("/login", async (req, res) => {
         req.session.userId = result.userDoc._id.toString();
         return res.redirect("/me");
       }
-      // If result is null, it means wrong credentials in Mongo
+      // If not found in Mongo, try local as a second chance (for demo account)
+      const user = await authenticateLocal(username, password);
+      if (user) {
+        req.session.userId = user.id;
+        return res.redirect("/me");
+      }
       return res
         .status(401)
-        .render("login", { error: "Sai username hoặc password (MongoDB).", mongoEnabled: true });
+        .render("login", { error: "Sai username hoặc password.", mongoEnabled: true });
     } catch (e) {
       console.error("MongoDB connection error, falling back to local:", e.message);
-      // Fallback to local
+      // Fallback to local on connection error
       const user = await authenticateLocal(username, password);
       if (user) {
         req.session.userId = user.id;
