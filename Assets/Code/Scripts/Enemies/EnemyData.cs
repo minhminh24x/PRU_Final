@@ -35,4 +35,7 @@ public class EnemyData : ScriptableObject
     [Header("Combat")]
     public float attackCooldown = 1.0f;
     public float attackRadius = 0.5f;
+
+    [Header("AI Logic")]
+    public EnemyAIBehavior aiBehavior;
 }

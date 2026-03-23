@@ -7,6 +7,7 @@ public class OverworldPlayer : MonoBehaviour
     
     // --- CODE MỚI THÊM VÀO ---
     public OverworldUIManager uiManager; // Kéo thả UIManager vào đây
+    public Vector3 visualOffset = new Vector3(0, 0.5f, 0); // Để nhân vật đứng cao hơn Node một chút
     // -------------------------
 
     private MapNode targetNode;
@@ -16,9 +17,12 @@ public class OverworldPlayer : MonoBehaviour
     {
         if (currentNode != null)
         {
-            transform.position = currentNode.transform.position;
+            transform.position = currentNode.transform.position + visualOffset;
             // Cập nhật UI ngay khi vừa load scene cho Node đầu tiên
             if (uiManager != null) uiManager.UpdateNodeDisplay(currentNode.nodeName, currentNode.nodeDescription); 
+
+            // Bật hiệu ứng ở node hiện tại
+            currentNode.SetPlayerOnNode(true);
         }
     }
 
@@ -38,7 +42,14 @@ void Update()
         if (currentNode != null && !string.IsNullOrEmpty(currentNode.sceneToLoad))
         {
             Debug.Log($"<color=cyan>Vào map: {currentNode.sceneToLoad}</color>");
-            SceneManager.LoadScene(currentNode.sceneToLoad);
+            if (SceneTransitionManager.Instance != null)
+            {
+                SceneTransitionManager.Instance.EnterSceneWithTransition(currentNode.sceneToLoad, currentNode.nodeName);
+            }
+            else
+            {
+                SceneManager.LoadScene(currentNode.sceneToLoad);
+            }
         }
     }
 }
@@ -55,6 +66,16 @@ void Update()
     {
         if (nextNode != null)
         {
+            if (nextNode.IsLocked())
+            {
+                Debug.Log($"<color=orange>Node {nextNode.nodeName} đang bị khóa! Yêu cầu Level {nextNode.requiredLevel}.</color>");
+                return;
+            }
+
+            // Tắt hiệu ứng ở node cũ
+            if (currentNode != null)
+                currentNode.SetPlayerOnNode(false);
+
             targetNode = nextNode;
             isMoving = true;
         }
@@ -62,17 +83,20 @@ void Update()
 
     void MoveTowardsTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetNode.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetNode.transform.position + visualOffset, moveSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, targetNode.transform.position) < 0.01f)
+        if (Vector3.Distance(transform.position, targetNode.transform.position + visualOffset) < 0.01f)
         {
-            transform.position = targetNode.transform.position; 
+            transform.position = targetNode.transform.position + visualOffset; 
             currentNode = targetNode; 
             isMoving = false; 
 
             // --- CODE MỚI THÊM VÀO ---
             // Cập nhật UI khi đã đặt chân lên Node mới
             if (uiManager != null) uiManager.UpdateNodeDisplay(currentNode.nodeName, currentNode.nodeDescription);
+
+            // Bật hiệu ứng ở node mới
+            currentNode.SetPlayerOnNode(true);
             // -------------------------
         }
     }

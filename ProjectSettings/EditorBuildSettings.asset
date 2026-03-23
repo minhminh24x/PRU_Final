@@ -24,13 +24,19 @@ EditorBuildSettings:
     path: Assets/Scenes/hubMap.unity
     guid: 7026a2ede35785343b752c5b093eeb65
   - enabled: 1
+    path: Assets/Scenes/Map1.unity
+    guid: 21fce49d838312249a171f987ceaa217
+  - enabled: 1
+    path: Assets/Scenes/Map2.unity
+    guid: ca39e95c93726664fa324d57c1fc3cca
+  - enabled: 1
     path: Assets/Scenes/Scene_Boss.unity
     guid: ed052d4aeff574b439104985601e09fb
   - enabled: 1
     path: Assets/Scenes/Scene_Taget.unity
     guid: c18e7f4d65b8a884eaf80352fa01b524
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Art/Textures/Map_Thuan/Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 0
     path: Assets/Scenes/Scene_1.unity

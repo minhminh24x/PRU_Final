@@ -110,9 +110,13 @@ public class InventoryUI : MonoBehaviour
         if (gridParent == null || slotPrefab == null) return;
         if (InventoryManager.Instance == null) return;
 
-        // Xóa slot cũ
-        foreach (Transform child in gridParent)
+        // Xóa slot cũ an toàn (dùng vòng lặp ngược để tránh lỗi skip)
+        for (int i = gridParent.childCount - 1; i >= 0; i--)
+        {
+            Transform child = gridParent.GetChild(i);
+            child.SetParent(null);
             Destroy(child.gameObject);
+        }
 
         // Tạo slot mới cho mỗi item trong inventory
         foreach (var slot in InventoryManager.Instance.slots)
@@ -169,5 +173,40 @@ public class InventoryUI : MonoBehaviour
     {
         if (inventoryContent != null) inventoryContent.SetActive(tab == 0);
         if (skillsContent != null) skillsContent.SetActive(tab == 1);
+    }
+
+    public void ShowItemInfo(ItemData item)
+    {
+        if (itemInfoText == null || item == null) return;
+
+        string info = $"<color=yellow><size=150%><b>{item.itemName}</b></size></color>\n";
+        info += $"<color=white>{item.description}</color>\n\n";
+
+        // Thêm thông số phụ nếu có
+        if (item.itemType == ItemType.Consumable)
+        {
+            if (item.healAmount > 0) info += $"<color=green>Hồi phục: {item.healAmount} HP</color>\n";
+            if (item.manaAmount > 0) info += $"<color=#00BFFF>Hồi phục: {item.manaAmount} MP</color>\n";
+            if (item.buffDamagePercent > 0) info += $"<color=red>Buff Sát thương: +{item.buffDamagePercent}%</color> ({item.buffDuration}s)\n";
+        }
+        else if (item.itemType == ItemType.Equipment)
+        {
+            if (item.bonusDEF > 0) info += $"<color=orange>Thủ: +{item.bonusDEF}</color>\n";
+            if (item.bonusSTR > 0) info += $"<color=red>Sức mạnh: +{item.bonusSTR}</color>\n";
+            if (item.bonusINT > 0) info += $"<color=#00BFFF>Trí lực: +{item.bonusINT}</color>\n";
+            if (item.bonusAGI > 0) info += $"<color=green>Nhanh nhẹn: +{item.bonusAGI}</color>\n";
+        }
+
+        info += $"<color=#AAAAAA><i>Nhấn chuột để dùng / ghép vào hotbar</i></color>";
+
+        itemInfoText.text = info;
+    }
+
+    public void HideItemInfo()
+    {
+        if (itemInfoText != null)
+        {
+            itemInfoText.text = "";
+        }
     }
 }

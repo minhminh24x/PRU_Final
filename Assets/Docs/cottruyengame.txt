@@ -1,0 +1,132 @@
+Tetra: The Shattered Realm
+
+
+Group 6
+Group Members
+CE180992 Le Minh Loc 
+CE180087 Tran Quoc Hung 
+CE182045 Vo Hoang Thuan 
+CE182344 Nguyen Tan Phat 
+Supervisor
+DaQL
+Ext Supervisor
+
+
+
+
+1. Game Title
+Tetra: The Shattered Realm
+2. Game Genre & Design Philosophy
+Main Genre: Platformer, 2D Side-scrolling.
+Combined Elements: Adventure, Linear Progression, Light-RPG (Stat Allocation System).
+Art Style: Pixel Art (Dark Fantasy Theme).
+Design Philosophy:
+Linearity: The game forces players to follow a fixed route (Earth -> Water -> Fire -> Air) through a map-locking mechanism using Gems, ensuring a seamless narrative experience.
+Progressive Challenge: The difficulty of the environment and monsters increases with each map, requiring players to master platforming skills and optimize RPG stats.
+Human-centric UX/UI: Minimalist interface, limiting cluttered icons, focusing on practical player experience (easy-to-read health/mana bars, quick actions).
+3. Game Script / Scenario
+3.1. Setting & Lore
+The Kingdom: Aethelgard was once a paradise sustained by the Tetra Core—a divine construct binding the 4 Elemental forces within a central Vessel of Balance.
+The Chaos: "The Void" descended, shattering the Core's bond. The 4 Elemental Gems were scattered, corrupting the land's Guardians, while the central Vessel was drained of power and cast aside.
+The Knight: The player awakens as a hollow suit of armor. You are the "5th Element" (The Vessel)—the binding agent of the Core. Unlike mortal beings, your hollow nature allows you to absorb and contain the volatile power of the Elemental Gems without being destroyed.
+3.2. Plot & Progression
+The player must journey through 4 corrupted realms to reclaim the lost Gems. The path is linear, as the seal to the next realm requires the resonance of the previous Elemental Gem to unlock. Only when the Vessel (Player) reabsorbs all 4 Gems will the final seal at the Hub break, granting access to the Void's Lair to restore the Tetra Core.
+ 	3.3. Gameplay Loop
+Prepare (Hub): Buy health/mana potions at the Shop, upgrade stats (STR/INT/DEF/AGI), practice with the Dummy.
+Traverse (Maps): Overcome 6 Scenes with specific environmental traps.
+Combat (Boss): Defeat the Guardian using appropriate skills and tactics.
+Unlock & Repeat: Collect the Gem to unlock the next map and repeat with higher difficulty.
+4. Objectives (Map, Enemy, Traps, Character)
+4.1. Level Structure (7 Maps)
+Map 0 (Menu): Start, Settings.
+Map 1 (Hub): Safe zone. Includes Shop NPC, Training Area, Teleport Portal.
+Map 2, 3, 4, 5 (Elemental Worlds): Divided into 6 Scenes (Intro -> Platforming -> Combat -> Gauntlet -> Elite Guard -> Boss).
+Map 2 (Earth): Collapsing mines, falling rocks.
+Map 3 (Water): Sunken temple, slippery floors.
+Map 4 (Fire): Lava peak, rising magma.
+Map 5 (Air): Floating islands, wind currents, abyss.
+Map 6 (Final Keep): Boss Rush & Final Boss.
+4.2. Enemies & Bosses
+Minions:
+Type 1 - Melee: Charges at the player upon sighting.
+Type 2 - Ranged: Fires projectiles from a distance.
+Type 3 - Tanker (Golem/Knight): High HP, blocks frontal attacks.
+Type 4 - Flying (Bat/Harpy): Hovers, swoops down to attack.
+Bosses:
+Earth Golem (Rannoch)
+Water Hydra (Scylla)
+Fire Beast (Monstrosity)
+Air Angel (Sanctyrix)
+Final Boss ( The Void)
+4.3. Traps
+Spikes: Hidden under floors/pits.
+Abyss: Bottomless pits (instant death).
+Fire streams: Intermittent fire pillars.
+Slippery Platforms: Ice/Water surfaces reducing friction.
+4.4. Character & Combat Mechanics
+Controls:
+WASD (Move)
+Space (Jump/Double Jump)
+Left Click (Attack)
+Right Click (Skill)
+E (Interact)
+1-2-3 (Hotbar)
+Combat Style:
+Melee (Physical): Uses Sword, damage based on STR.
+Magic: Uses Skills (Fireball/Dash), consumes Mana, damage based on INT.
+Defense: Utilizes Double Jump and Invincibility Frames (I-Frames) when Dashing or taking damage to dodge.
+RPG Stats:
+STR: Increases Physical Damage.
+INT: Increases Skill Damage & Max Mana.
+DEF: Reduces incoming damage & Increases Max HP.
+AGI: Increases Movement Speed & Critical Hit Chance.
+5. Related Assets
+Character: Free Fantasy Knight on Itch.io - Full animations (Idle, Run, Attack, Jump, Death).
+UI:  Basic Pixel Health Bar on Itch.io - Minimalist, intuitive.
+Environment: "Pixel Adventure 1 & 2" (Itch.io) - Forest, Cave, Temple tilesets.
+Icons: Raven Fantasy Icons on Itch.io - Potions, Coins, Gems.
+The appearance of each monster: Members will search for content that fits the theme of their map (for example, a water map needs fish and shrimp, an air map needs bats).
+6. Items & Acquisition System
+6.1. Item List
+Red Potion: Restores HP.
+Blue Potion: Restores Mana.
+Gem (4 colors): Story Item (Key Item) to unlock Maps.
+Coin: In-game currency.
+6.2. Acquisition Mechanics
+Loot: When monsters die or chests open, items (Coins, Gems) drop. Player collides to pick up.
+Shop: At Map 1 (Hub), interact with NPC to buy Potions or Stat Points using Coins.
+7. Implementation Plan (8 Weeks)
+Week 3: Initialization & Core Mechanics
+ - Setup Unity Project, Import 2D Packages.
+ - Code Player Controller: Run, Jump, Double Jump, Ground Check.
+ - Implement Animation State Machine (Idle <-> Run <-> Jump).
+Week 4: Stats System & Data
+ - Script `CharacterStats`: Manage HP, MP, Str, Agi.
+ - UI Implementation: Health/Mana bars updating via Events.
+ - Level Up Logic: EXP calculation and Stat Point allocation UI.
+Week 5: Combat Foundation
+ - Attack Logic: Hitbox detection, Cooldown management.
+ - Damage System: `IDamageable` interface, I-Frames (Invincibility), Knockback.
+ - Combat Test: Create a Training Dummy prefab.
+Week 6: Enemy Basic & AI
+ - Finite State Machine (FSM): Idle -> Patrol -> Chase -> Attack.
+ - Create Prefabs for 4 Enemy Types with unique stats.
+ - Physics: Handle collision layers between Player and Enemies.
+Week 7: Skills & Boss Logic
+ - Skill System: ScriptableObjects for skills (Fireball, Dash).
+ - Boss AI: Multi-stage behavior (e.g., Enrage mode at 50% HP).
+ - Win/Loss Conditions: Game Over screen and Victory trigger.
+Week 8: Level Design - Part 1
+ - Tilemap: Build Map 1 (Hub) and Map 2 (Earth) using Rule Tiles.
+ - Structure: Implement the 6-Scene flow.
+ - Scene Management: Loading screens and Transitions.
+Week 9: Level Design - Part 2
+ - Build Maps 3, 4, 5 (Water, Fire, Air).
+ - Item Logic: Pickup scripts for Coins/Potions/Gems.
+ - Save/Load System: Persist player stats and unlocked maps using JSON/PlayerPrefs.
+Week 10: Polish & Debug
+ - Audio: Add BGM and SFX (Jump, Hit, Die).
+ - VFX: Particle systems for blood, explosions, level up.
+ - Balancing: Adjust enemy HP/Damage based on playtests.
+ - Build: Final build for Demo.
+

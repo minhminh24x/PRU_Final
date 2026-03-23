@@ -78,6 +78,19 @@ public class HotbarManager : MonoBehaviour
     public void AssignItem(int slotIndex, ItemData item)
     {
         if (slotIndex < 0 || slotIndex >= slotCount) return;
+
+        // Nếu item này đã nằm ở slot khác, xóa nó khỏi slot cũ
+        if (item != null)
+        {
+            for (int i = 0; i < slotCount; i++)
+            {
+                if (i != slotIndex && slotItems[i] == item)
+                {
+                    slotItems[i] = null;
+                }
+            }
+        }
+
         slotItems[slotIndex] = item;
         OnHotbarChanged?.Invoke();
     }

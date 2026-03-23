@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845fa7796d6f7ec44a6ed46ae44909a4, type: 3}
+  m_Name: NPC_Sena
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Sena
+  portrait: {fileID: 0}
+  portraitController: {fileID: 0}
+  dialogueLines: []
+  repeatDialogueLines: []
+  rewardItem: {fileID: 0}
+  rewardAmount: 1
+  rewardManaDirect: 0

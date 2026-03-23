@@ -3,12 +3,18 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class EnemyMovement : MonoBehaviour
 {
+    [Header("Patrol Settings")]
+    [Tooltip("Tự động tạo ra 2 mốc tuần tra từ vị trí ban đầu mà không cần lập Point A, B")]
+    [SerializeField] bool autoPatrol = true;
+    [SerializeField] float autoPatrolDistance = 3f;
+
+    [Tooltip("Gán tay Point A, B (Bỏ chọn Auto Patrol mới chạy)")]
     [SerializeField] Transform pointA;
     [SerializeField] Transform pointB;
     
-    [Header("Patrol")]
+    [Header("Patrol Tuning")]
     [SerializeField] float arriveDistance = 0.15f;
-    [SerializeField] float waitTime = 0.5f;
+    [SerializeField] float waitTime = 1.0f;
 
     [Header("Movement Speed (Set by Controller)")]
     public float currentSpeed = 2f;
@@ -19,7 +25,9 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
 
-    Transform _target;
+    float _pointAX;
+    float _pointBX;
+    float _targetX;
     float _waitTimer;
     bool _isWaiting;
 
@@ -28,21 +36,39 @@ public class EnemyMovement : MonoBehaviour
     void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
-        _target = pointA != null ? pointA : pointB;
+    }
+
+    void Start()
+    {
+        // Khởi tạo vị trí tuần tra
+        if (autoPatrol)
+        {
+            _pointAX = transform.position.x - autoPatrolDistance;
+            _pointBX = transform.position.x + autoPatrolDistance;
+        }
+        else if (pointA != null && pointB != null)
+        {
+            _pointAX = pointA.position.x;
+            _pointBX = pointB.position.x;
+        }
+        else
+        {
+            _pointAX = transform.position.x;
+            _pointBX = transform.position.x;
+        }
+
+        _targetX = _pointBX; // Bắt đầu đi về phải
     }
 
     public float GetPatrolCenter()
     {
-        if (pointA == null || pointB == null)
-            return transform.position.x;
-
-        return (pointA.position.x + pointB.position.x) / 2f;
+        return (_pointAX + _pointBX) / 2f;
     }
 
     public void PatrolTick(float dt)
     {
         if (rb == null) return;
-        if (_target == null) return;
+        if (_pointAX == _pointBX) return; // Không có quảng đường tuần tra
 
         if (_isWaiting)
         {
@@ -55,13 +81,12 @@ public class EnemyMovement : MonoBehaviour
                 _isWaiting = false;
 
                 // đổi điểm
-                if (pointA != null && pointB != null)
-                    _target = (_target == pointA) ? pointB : pointA;
+                _targetX = (_targetX == _pointAX) ? _pointBX : _pointAX;
             }
             return;
         }
 
-        float dx = _target.position.x - rb.position.x;
+        float dx = _targetX - rb.position.x;
 
         // ✅ tới nơi -> STOP NGAY để không overshoot
         if (Mathf.Abs(dx) <= arriveDistance)
@@ -93,6 +118,32 @@ public class EnemyMovement : MonoBehaviour
         float dir = Mathf.Sign(dx);
         rb.linearVelocity = new Vector2(dir * currentSpeed, rb.linearVelocity.y);
         FaceDirection(dir);
+    }
+
+    /// <summary>
+    /// Di chuyển theo cả 2 trục (dùng cho quái bay).
+    /// </summary>
+    public void MoveToward(Vector2 targetPos)
+    {
+        if (rb == null) return;
+
+        Vector2 currentPos = rb.position;
+        Vector2 dir = (targetPos - currentPos);
+        
+        if (dir.magnitude <= moveTowardDeadzone)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        dir.Normalize();
+        rb.linearVelocity = dir * currentSpeed;
+        FaceDirection(dir.x);
+    }
+
+    public void SetGravityScale(float scale)
+    {
+        if (rb != null) rb.gravityScale = scale;
     }
 
     public void Stop()

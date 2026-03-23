@@ -21,17 +21,32 @@ public class EnemyController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] bool showStateLogs = true;
 
-    enum AIState { Patrol, Chase, Attack, Returning }
+    public enum AIState { Patrol, Chase, Attack, Returning }
     AIState _currentState = AIState.Patrol;
 
     float _homeX;
     bool _isInitialized = false;
+
+    // Public properties for AI Behaviors to access
+    public float HomeX => _homeX;
+    public EnemyMovement Movement => movement;
+    public EnemyCombat Combat => combat;
+    public EnemyHealth Health => health;
+    public DetectSensor2D DetectSensor => detectSensor;
+    public AttackRange2D AttackRange => attackRange;
+    public bool IsReturning => _currentState == AIState.Returning;
+
+    public float MaxChaseDistance => (health != null && health.data != null) ? health.data.maxChaseDistance : fallbackMaxChaseDistance;
+    public float PatrolSpeed => (health != null && health.data != null) ? health.data.patrolSpeed : fallbackPatrolSpeed;
+    public float ChaseSpeed => (health != null && health.data != null) ? health.data.chaseSpeed : fallbackChaseSpeed;
 
     void Start()
     {
         if (movement == null) movement = GetComponent<EnemyMovement>();
         if (combat == null) combat = GetComponent<EnemyCombat>();
         if (health == null) health = GetComponent<EnemyHealth>();
+        
+        // Try to find sensors if not assigned
         if (detectSensor == null) detectSensor = transform.Find("DetectSensor")?.GetComponent<DetectSensor2D>();
         if (attackRange == null) attackRange = transform.Find("AttackRange")?.GetComponent<AttackRange2D>();
 
@@ -56,34 +71,46 @@ public class EnemyController : MonoBehaviour
 
     void HandleAIState()
     {
-        // Get data values
-        float maxDist = (health != null && health.data != null) ? health.data.maxChaseDistance : fallbackMaxChaseDistance;
-        float pSpeed = (health != null && health.data != null) ? health.data.patrolSpeed : fallbackPatrolSpeed;
-        float cSpeed = (health != null && health.data != null) ? health.data.chaseSpeed : fallbackChaseSpeed;
+        if (health != null && health.data != null && health.data.aiBehavior != null)
+        {
+            health.data.aiBehavior.Execute(this);
+        }
+        else
+        {
+            // Fallback to legacy logic if no behavior assigned
+            DefaultMeleeLogic();
+        }
+    }
+
+    private void DefaultMeleeLogic()
+    {
+        float maxDist = MaxChaseDistance;
+        float pSpeed = PatrolSpeed;
+        float cSpeed = ChaseSpeed;
 
         if (attackRange != null && attackRange.InRange && attackRange.Target != null)
         {
             SwitchState(AIState.Attack);
-            if (movement != null) movement.MoveTowardX(attackRange.Target.position.x);
-            if (movement != null) movement.Stop();
+            if (movement != null) 
+            {
+                movement.MoveTowardX(attackRange.Target.position.x);
+                movement.Stop();
+            }
             if (combat != null) combat.TryAttack();
             return;
         }
 
-        // 2. DETECT & CHASE
         if (detectSensor != null && detectSensor.HasTarget && detectSensor.Target != null)
         {
             float playerX = detectSensor.Target.position.x;
             float distPlayerToHome = Mathf.Abs(playerX - _homeX);
             
-            // Check max chase dist
             if (distPlayerToHome > maxDist)
             {
-                // Qua gioi han -> Return
                 SwitchState(AIState.Returning);
                 if (movement != null) 
                 {
-                    movement.currentSpeed = cSpeed; // ve lẹ
+                    movement.currentSpeed = cSpeed;
                     movement.MoveTowardX(_homeX);
                 }
             }
@@ -99,22 +126,20 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        // Returning state logic (if player left sensor)
         if (_currentState == AIState.Returning)
         {
             float distToHome = Mathf.Abs(transform.position.x - _homeX);
-            if (distToHome > 0.5f) // chưa về tới
+            if (distToHome > 0.5f)
             {
                 if (movement != null)
                 {
                     movement.currentSpeed = cSpeed;
                     movement.MoveTowardX(_homeX);
                 }
-                return; // Giữ nguyên Returning
+                return;
             }
         }
 
-        // 3. PATROL
         SwitchState(AIState.Patrol);
         if (movement != null)
         {
@@ -123,7 +148,12 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void SwitchState(AIState newState)
+    public void SwitchStateToAttack() => SwitchState(AIState.Attack);
+    public void SwitchStateToChase() => SwitchState(AIState.Chase);
+    public void SwitchStateToPatrol() => SwitchState(AIState.Patrol);
+    public void SwitchStateToReturning() => SwitchState(AIState.Returning);
+
+    public void SwitchState(AIState newState)
     {
         if (_currentState == newState) return;
 
@@ -134,16 +164,16 @@ public class EnemyController : MonoBehaviour
             switch (newState)
             {
                 case AIState.Attack:
-                    Debug.Log($"<color=red>[AI STATE] ATTACKING!</color>");
+                    Debug.Log($"<color=red>[AI STATE] ATTACKING!</color>", this);
                     break;
                 case AIState.Chase:
-                    Debug.Log($"<color=yellow>[AI STATE] START CHASING (Player detected!)</color>");
+                    Debug.Log($"<color=yellow>[AI STATE] START CHASING (Player detected!)</color>", this);
                     break;
                 case AIState.Patrol:
-                    Debug.Log($"<color=cyan>[AI STATE] PATROLLING</color>");
+                    Debug.Log($"<color=cyan>[AI STATE] PATROLLING</color>", this);
                     break;
                 case AIState.Returning:
-                    Debug.Log($"<color=grey>[AI STATE] STOP CHASE (Too far from home)</color>");
+                    Debug.Log($"<color=grey>[AI STATE] STOP CHASE (Too far from home)</color>", this);
                     break;
             }
         }
@@ -151,12 +181,7 @@ public class EnemyController : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        float maxDist = fallbackMaxChaseDistance;
-        // if playing and we have health, try get from data
-        if (Application.isPlaying && health != null && health.data != null)
-        {
-            maxDist = health.data.maxChaseDistance;
-        }
+        float maxDist = MaxChaseDistance;
 
         Gizmos.color = Color.yellow;
         float center = Application.isPlaying ? _homeX : transform.position.x;

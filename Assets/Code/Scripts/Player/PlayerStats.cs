@@ -30,8 +30,26 @@ public class PlayerStats : MonoBehaviour
     // --- MỚI: Chuyển mảng EXP ra ngoài để các hàm khác có thể đọc được ---
     private readonly int[] expMilestones = { 0, 100, 300, 650, 1150, 1850, 2750, 3950, 5450, 7450 };
 
-    void Awake()
+    void Start()
     {
+        // --- Nạp dữ liệu từ GameSession nếu đã chơi ---
+        if (GameSession.IsLoggedIn && !GameSession.IsNewGame)
+        {
+            level = GameSession.PlayerLevel;
+            currentExp = GameSession.CurrentExp;
+            unspentStatPoints = GameSession.UnspentStatPoints;
+            
+            baseDEF = GameSession.BaseDEF;
+            baseINT = GameSession.BaseINT;
+            baseSTR = GameSession.BaseSTR;
+            baseAGI = GameSession.BaseAGI;
+            
+            extraDEF = GameSession.ExtraDEF;
+            extraINT = GameSession.ExtraINT;
+            extraSTR = GameSession.ExtraSTR;
+            extraAGI = GameSession.ExtraAGI;
+        }
+
         Recalculate();
     }
 

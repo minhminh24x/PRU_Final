@@ -24,6 +24,37 @@ public class StatsUIManager : MonoBehaviour
     public TextMeshProUGUI defText;
     public TextMeshProUGUI agiText;
 
+    [Header("Buttons (Các nút cộng)")]
+    public Button btnSTR;
+    public Button btnINT;
+    public Button btnDEF;
+    public Button btnAGI;
+
+    void Start()
+    {
+        // Tự động tìm nếu chưa gán trong Inspector (dựa trên cấu trúc Hierarchy của bạn)
+        if (btnSTR == null) btnSTR = transform.Find("Row_STR/Btn_AddSTR")?.GetComponent<Button>();
+        if (btnINT == null) btnINT = transform.Find("Row_INT/Btn_AddSTR")?.GetComponent<Button>();
+        if (btnDEF == null) btnDEF = transform.Find("Row_DEF/Btn_AddSTR")?.GetComponent<Button>();
+        if (btnAGI == null) btnAGI = transform.Find("Row_AGI/Btn_AddSTR")?.GetComponent<Button>();
+
+        if (strSlider == null) strSlider = transform.Find("Row_STR/Slider_STR")?.GetComponent<Slider>();
+        if (intSlider == null) intSlider = transform.Find("Row_INT/Slider_STR")?.GetComponent<Slider>();
+        if (defSlider == null) defSlider = transform.Find("Row_DEF/Slider_STR")?.GetComponent<Slider>();
+        if (agiSlider == null) agiSlider = transform.Find("Row_AGI/Slider_STR")?.GetComponent<Slider>();
+
+        if (strText == null) strText = transform.Find("Row_STR/Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+        if (intText == null) intText = transform.Find("Row_INT/Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+        if (defText == null) defText = transform.Find("Row_DEF/Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+        if (agiText == null) agiText = transform.Find("Row_AGI/Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+
+        // Gán sự kiện (Ghi đè nếu trong Inspector bị gán sai)
+        if (btnSTR != null) { btnSTR.onClick.RemoveAllListeners(); btnSTR.onClick.AddListener(OnClickAddSTR); }
+        if (btnINT != null) { btnINT.onClick.RemoveAllListeners(); btnINT.onClick.AddListener(OnClickAddINT); }
+        if (btnDEF != null) { btnDEF.onClick.RemoveAllListeners(); btnDEF.onClick.AddListener(OnClickAddDEF); }
+        if (btnAGI != null) { btnAGI.onClick.RemoveAllListeners(); btnAGI.onClick.AddListener(OnClickAddAGI); }
+    }
+
     void OnEnable()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");

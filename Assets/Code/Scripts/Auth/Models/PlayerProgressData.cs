@@ -35,4 +35,18 @@ public class ProgressDocument
     public int    MaxHealth     { get; set; } = 100;
     public int    EnemiesKilled { get; set; }
     public float  TotalPlayTime { get; set; }
+
+    // RPG Stats
+    public int    PlayerLevel       { get; set; } = 1;
+    public int    CurrentExp        { get; set; } = 0;
+    public int    UnspentStatPoints { get; set; } = 0;
+    public int    BaseDEF           { get; set; } = 100;
+    public int    BaseINT           { get; set; } = 50;
+    public int    BaseSTR           { get; set; } = 10;
+    public int    BaseAGI           { get; set; } = 5;
+    
+    public int    ExtraDEF          { get; set; } = 0;
+    public int    ExtraINT          { get; set; } = 0;
+    public int    ExtraSTR          { get; set; } = 0;
+    public int    ExtraAGI          { get; set; } = 0;
 }

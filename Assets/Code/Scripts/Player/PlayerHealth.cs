@@ -26,8 +26,19 @@ public class PlayerHealth : MonoBehaviour
         if (stats != null)
         {
             stats.Recalculate(); // Đảm bảo tính toán kỹ trước khi gán
-            currentHP = stats.maxHP;
-            currentMP = stats.maxMP;
+            
+            if (GameSession.IsLoggedIn && !GameSession.IsNewGame)
+            {
+                currentHP = GameSession.CurrentHealth;
+                // MP hiện tại chưa lưu trên DB, ta có thể set đầy hoặc set mặc định
+                currentMP = stats.maxMP; 
+            }
+            else
+            {
+                currentHP = stats.maxHP;
+                currentMP = stats.maxMP;
+            }
+            
             UpdateAllUI();
         }
     }
