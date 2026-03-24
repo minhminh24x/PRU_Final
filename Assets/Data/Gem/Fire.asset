@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef6329d088304c4cb256b9593f8cb97, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: Assembly-CSharp::GemData
+  gemType: 2
+  gemName: "Ng\u1ECDc L\u1EEDa"
+  gemSprite: {fileID: 21300000, guid: 1e69bb2845a90b744a6babd9a5556b23, type: 3}
+  gemColor: {r: 1, g: 0.07028263, b: 0, a: 1}
+  pedestalLore:
+  - "Nhi\u1EC7t huy\u1EBFt c\u1EE7a n\xFAi l\u1EEDa k\u1EBFt tinh th\xE0nh Ng\u1ECDc
+    H\u1ECFa. N\xF3 ch\u1EDD k\u1EBB \u0111\u1EE7 can \u0111\u1EA3m b\u01B0\u1EDBc
+    v\xE0o bi\u1EC3n l\u1EEDa."
+  obtainedLore:
+  - "g\u1ECDc H\u1ECFa b\xF9ng s\xE1ng r\u1EF1c r\u1EE1 \u2014 ng\u1ECDn l\u1EEDa
+    trong l\xF2ng c\u1EADu \u0111\xE3 \u0111\u01B0\u1EE3c c\xF4ng nh\u1EADn."

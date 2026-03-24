@@ -30,8 +30,8 @@ public class OverworldUIManager : MonoBehaviour
             }
         }
 
-        // Nhấn E để bật/tắt bảng Túi đồ (Làm tương tự)
-        if (Input.GetKeyDown(KeyCode.E))
+        // Nhấn I để bật/tắt bảng Túi đồ
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if (inventoryPanel != null) 
             {

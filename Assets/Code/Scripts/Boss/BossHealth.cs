@@ -12,6 +12,12 @@ public class BossHealth : MonoBehaviour
   [Header("Gate")]
   public GameObject rightGate;   // 🔒 collider chặn mép phải
 
+  [Header("Gem Drop")]
+  [Tooltip("ScriptableObject GemData của ngọc boss này sẽ rơi ra")]
+  public GemData gemToDrop;
+  [Tooltip("Prefab GemPickup sẽ được spawn tại vị trí boss khi chết")]
+  public GameObject gemPrefab;
+
   bool isDead;
   Animator anim;
 
@@ -80,6 +86,25 @@ public class BossHealth : MonoBehaviour
     Collider2D col = GetComponent<Collider2D>();
     if (col != null) col.enabled = false;
 
+    // 💎 Drop ngọc nếu chưa thu thập
+    SpawnGemDrop();
+
     Destroy(gameObject, 2f);
+  }
+
+  void SpawnGemDrop()
+  {
+    if (gemToDrop == null || gemPrefab == null) return;
+
+    // Không spawn nếu đã thu thập từ trước
+    if (GemManager.Instance != null && GemManager.Instance.IsCollected(gemToDrop.gemType))
+    {
+      Debug.Log($"[BossHealth] Ngọc {gemToDrop.gemName} đã thu thập trước đó — không drop lại.");
+      return;
+    }
+
+    Vector3 dropPos = transform.position + Vector3.up * 1.5f;
+    Instantiate(gemPrefab, dropPos, Quaternion.identity);
+    Debug.Log($"[BossHealth] Dropped gem: {gemToDrop.gemName}");
   }
 }

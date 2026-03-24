@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd255303535734b4c8ff8a17a10a5c04, type: 3}
+  m_Name: Sena_Shop
+  m_EditorClassIdentifier: Assembly-CSharp::ShopData
+  shopkeeperName: Sena
+  shopkeeperPortrait: {fileID: -855298285791758126, guid: e3ecce776fc453f449d10be0aa3733aa, type: 3}
+  greetingLine: "Ch\xE0o m\u1EEBng! T\xF4i c\xF3 th\u1EE9 t\u1ED1t cho c\u1EADu \u0111\xE2y."
+  items:
+  - item: {fileID: 11400000, guid: c2853d4acd78c724f9bb791abb1a4739, type: 2}
+    overridePrice: 0
+    stockLimit: 5
+  - item: {fileID: 11400000, guid: 364e1e153dc85bc46a81b2cf31755b90, type: 2}
+    overridePrice: 0
+    stockLimit: 5

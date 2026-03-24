@@ -12,6 +12,9 @@ public class EnemyHealth : MonoBehaviour
 
     public int CurrentHP { get; private set; }
     public bool IsDead { get; private set; }
+    
+    [Header("Boss / Elite Settings")]
+    public bool superArmor = false; // Nếu true, không bị giật (Hurt) khi trúng đòn
 
     public event Action OnDied;
 
@@ -38,8 +41,8 @@ public class EnemyHealth : MonoBehaviour
 
         if (CurrentHP > 0)
         {
-            // Hurt animation
-            if (animDriver != null) animDriver.PlayHurt();
+            // Hurt animation (Bỏ qua nếu có Super Armor)
+            if (!superArmor && animDriver != null) animDriver.PlayHurt();
             return;
         }
 

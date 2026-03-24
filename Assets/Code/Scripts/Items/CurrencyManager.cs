@@ -1,51 +1,112 @@
-using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-/// <summary>
-/// Hệ thống tiền tệ — static, tồn tại suốt game.
-/// UI hoặc script khác lắng nghe OnGoldChanged để cập nhật.
-/// </summary>
-public static class CurrencyManager
+public class CurrencyManager : MonoBehaviour
 {
-    public static int Gold { get; private set; } = 0;
+    public static CurrencyManager Instance { get; private set; }
+    
+    // --- MỚI: API cho Shop & Hub ---
+    public static int Gold => (Instance != null) ? Instance.GetCurrency(CurrencyType.Coin) : 0;
+    public static void AddGold(int amount) => Instance?.AddCurrency(CurrencyType.Coin, amount);
+    public static bool SpendGold(int amount) => Instance != null && Instance.RemoveCurrency(CurrencyType.Coin, amount);
+    public static bool HasEnough(int amount) => Gold >= amount;
+    public static System.Action<int> OnGoldChanged;
 
-    public static event Action<int> OnGoldChanged; // truyền gold hiện tại
+    // Quản lý số dư từng loại tiền
+    private Dictionary<CurrencyType, int> currencyAmounts = new Dictionary<CurrencyType, int>();
 
-    public static void AddGold(int amount)
+    // UI cho từng loại tiền (kéo vào Inspector)
+    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI gemText;
+    public TextMeshProUGUI blueSoulText;
+    public TextMeshProUGUI purpleSoulText;
+
+    // Nếu thêm loại mới, khai báo UI ở đây
+
+    void Awake()
     {
-        if (amount <= 0) return;
-        Gold += amount;
-        Debug.Log($"<color=yellow>+{amount} Gold! Tổng: {Gold}</color>");
-        OnGoldChanged?.Invoke(Gold);
+        if (Instance == null)
+        {
+            Instance = this;
+
+            // Khởi tạo số dư mặc định
+            foreach (CurrencyType type in System.Enum.GetValues(typeof(CurrencyType)))
+                currencyAmounts[type] = 0;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public static bool SpendGold(int amount)
+    public void AddCurrency(CurrencyType type, int amount)
     {
-        if (amount <= 0) return false;
-        if (Gold < amount) return false;
+        if (!currencyAmounts.ContainsKey(type))
+            currencyAmounts[type] = 0;
+        currencyAmounts[type] += amount;
+        UpdateCurrencyUI(type);
+        // Chỉ cộng trophy nếu là Coin và TrophyRecordUI tồn tại
+        if (type == CurrencyType.Coin && TrophyRecordUI.Instance != null)
+            TrophyRecordUI.Instance.AddGoldToTrophy(amount);
+    }
 
-        Gold -= amount;
-        Debug.Log($"<color=orange>-{amount} Gold! Còn lại: {Gold}</color>");
-        OnGoldChanged?.Invoke(Gold);
+    public int GetCurrency(CurrencyType type)
+    {
+        return currencyAmounts[type];
+    }
+    public void SetCurrency(CurrencyType type, int amount)
+    {
+        currencyAmounts[type] = amount;
+        UpdateCurrencyUI(type);
+    }
+    public bool RemoveCurrency(CurrencyType type, int amount)
+    {
+        if (!currencyAmounts.ContainsKey(type))
+            return false;
+
+        if (currencyAmounts[type] < amount)
+            return false; // Không đủ tiền
+
+        currencyAmounts[type] -= amount;
+        UpdateCurrencyUI(type);
         return true;
     }
 
-    public static bool HasEnough(int amount)
+    private void UpdateCurrencyUI(CurrencyType type)
     {
-        return Gold >= amount;
+        switch (type)
+        {
+            case CurrencyType.Coin:
+                if (coinText != null) coinText.text = currencyAmounts[type].ToString();
+                OnGoldChanged?.Invoke(currencyAmounts[type]); // MỚI: Bắn event
+                break;
+            case CurrencyType.Gem:
+                if (gemText != null) gemText.text = currencyAmounts[type].ToString();
+                break;
+            case CurrencyType.BlueSoul:
+                if (blueSoulText != null) blueSoulText.text = currencyAmounts[type].ToString();
+                break;
+            case CurrencyType.PurpleSoul:
+                if (purpleSoulText != null) purpleSoulText.text = currencyAmounts[type].ToString();
+                break;
+        }
+    }
+    public void ResetCurrency()
+    {
+        currencyAmounts.Clear();
+
+        // Đảm bảo tất cả các loại tiền được khởi tạo lại sau khi clear
+        foreach (CurrencyType type in System.Enum.GetValues(typeof(CurrencyType)))
+        {
+            currencyAmounts[type] = 0;
+            UpdateCurrencyUI(type);
+        }
+
+        Debug.Log("[CurrencyManager] Đã reset currency.");
     }
 
-    /// <summary>Reset về 0 (khi new game hoặc logout)</summary>
-    public static void Reset()
-    {
-        Gold = 0;
-        OnGoldChanged?.Invoke(Gold);
-    }
 
-    /// <summary>Set trực tiếp (khi load từ MongoDB)</summary>
-    public static void SetGold(int value)
-    {
-        Gold = Mathf.Max(0, value);
-        OnGoldChanged?.Invoke(Gold);
-    }
+
 }

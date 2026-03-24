@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078e16a7ea9caef45be5bc420879386e, type: 3}
+  m_Name: CutScene1
+  m_EditorClassIdentifier: 
+  npcId: 
+  characterName: Alvin
+  avatar: {fileID: 21300000, guid: fe9ac768ef6b2d649b0a5c85bab6c3cd, type: 3}
+  isQuestGiver: 0
+  defaultLines:
+  - The sun disappeared so suddenly, I have never seen anything like this before.
+  - Something feels wrong in the air; I should talk to the chief and find out what
+    is happening.
+  questId: 
+  questOfferLines: []
+  questInProgressLines: []
+  questSpecialLines: []
+  rewardList: []
+  questCompletedLines: []
+  unlockAfterQuestId: 
+  unlockedLines: []

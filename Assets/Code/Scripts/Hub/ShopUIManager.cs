@@ -51,8 +51,17 @@ public class ShopUIManager : MonoBehaviour
         CurrencyManager.OnGoldChanged -= RefreshGoldText;
     }
 
+    private bool _openedThisFrame = false;
+
     void Update()
     {
+        // Tránh đóng shop ngay trong frame vừa mở (do cả NPC và UI cùng bắt phím E)
+        if (_openedThisFrame)
+        {
+            _openedThisFrame = false;
+            return;
+        }
+
         // Nhấn Escape hoặc E để đóng shop
         if (shopPanel.activeSelf && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E)))
         {
@@ -86,6 +95,7 @@ public class ShopUIManager : MonoBehaviour
         BuildItemList();
 
         shopPanel.SetActive(true);
+        _openedThisFrame = true; // Đánh dấu để Update không đóng ngay lập tức
         LockPlayer(true);
         if (feedbackText) feedbackText.text = "";
     }
@@ -158,6 +168,7 @@ public class ShopUIManager : MonoBehaviour
             if (entry.item == null) continue;
 
             GameObject row = Instantiate(shopItemRowPrefab, itemListParent);
+            row.SetActive(true); // Template có thể inactive — phải bật lên sau khi Instantiate
             spawnedRows.Add(row);
             SetupItemRow(row, entry, i, stockRemaining[i]);
         }

@@ -24,8 +24,8 @@ EditorBuildSettings:
     path: Assets/Scenes/hubMap.unity
     guid: 7026a2ede35785343b752c5b093eeb65
   - enabled: 1
-    path: Assets/Scenes/Map1.unity
-    guid: 21fce49d838312249a171f987ceaa217
+    path: Assets/Scenes/Map1_Remake.unity
+    guid: ed4d1ebbec12588408f5d722d1f2e178
   - enabled: 1
     path: Assets/Scenes/Map2.unity
     guid: ca39e95c93726664fa324d57c1fc3cca
@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene_Taget.unity
     guid: c18e7f4d65b8a884eaf80352fa01b524
+  - enabled: 1
+    path: Assets/Art/Textures/Map3/phatnt/Map3/map3.unity
+    guid: 619626b58a4749b4bbcf4c815f412318
   - enabled: 0
     path: Assets/Art/Textures/Map_Thuan/Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
@@ -44,6 +47,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Scene_1 1.unity
     guid: 93bc191ea55a2e842a283092f1c46939
+  - enabled: 0
+    path: Assets/Scenes/Map1.unity
+    guid: 21fce49d838312249a171f987ceaa217
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

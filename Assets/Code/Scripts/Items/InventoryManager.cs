@@ -1,129 +1,174 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
-/// <summary>
-/// Một ô trong kho đồ: chứa ItemData + số lượng.
-/// </summary>
-[System.Serializable]
-public class InventorySlot
-{
-    public ItemData item;
-    public int quantity;
-
-    public InventorySlot(ItemData item, int quantity)
-    {
-        this.item = item;
-        this.quantity = quantity;
-    }
-}
-
-/// <summary>
-/// Singleton quản lý toàn bộ kho đồ. DontDestroyOnLoad.
-/// </summary>
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance { get; private set; }
+    public static InventoryManager Instance;
 
-    [Header("Cấu hình")]
-    public int maxSlots = 20;
+    // --- Đã gỡ bỏ lớp lồng nhau InventorySlot để dùng lớp toàn cục trong SharedTypes.cs ---
 
-    public List<InventorySlot> slots = new List<InventorySlot>();
+    public List<InventorySlot> inventoryItems = new List<InventorySlot>();
+    public int maxInventorySize = 20;
 
-    public event Action OnInventoryChanged;
+    // --- MỚI: API cho UI "Advanced" ---
+    public List<InventorySlot> slots => inventoryItems;
+    public int maxSlots => maxInventorySize;
+    public event System.Action OnInventoryChanged; // ĐÃ SỬA: Bỏ static để instance access được
 
-    void Awake()
+    public InventoryStaticUIController uiController;
+    public List<ItemData> currencyItemDataList; // Kéo asset Coin, Gem,... vào Inspector
+
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
+
     /// <summary>
-    /// Thêm item vào kho. Trả về true nếu thêm được.
+    /// Thêm item, nếu đã có thì cộng dồn số lượng, không thì add slot mới
     /// </summary>
+    // Thêm vật phẩm vào kho (nếu vật phẩm đã có thì tăng số lượng)
     public bool AddItem(ItemData item, int amount = 1)
     {
-        if (item == null || amount <= 0) return false;
+        // Kiểm tra xem vật phẩm đã có trong kho chưa
+        var existingSlot = inventoryItems.FirstOrDefault(slot => slot.item.itemName == item.itemName);  // Compare by itemName instead of the whole object
 
-        // Nếu stackable, tìm slot có sẵn item cùng loại
-        if (item.stackable)
+        if (existingSlot != null)
         {
-            InventorySlot existing = slots.Find(s => s.item == item && s.quantity < item.maxStack);
-            if (existing != null)
+            // Nếu vật phẩm đã có, tăng số lượng (stack)
+            existingSlot.quantity += amount;
+            Debug.Log($"Vật phẩm {item.itemName} đã có, cộng dồn {amount} vào kho, tổng số lượng: {existingSlot.quantity}");
+        }
+        else
+        {
+            // Kiểm tra giới hạn inventory (nếu có)
+            if (inventoryItems.Count >= maxInventorySize)
             {
-                int canAdd = Mathf.Min(amount, item.maxStack - existing.quantity);
-                existing.quantity += canAdd;
-                amount -= canAdd;
-
-                if (amount <= 0)
-                {
-                    Debug.Log($"<color=green>+{canAdd} {item.itemName} (tổng: {existing.quantity})</color>");
-                    OnInventoryChanged?.Invoke();
-                    return true;
-                }
+                Debug.LogWarning("Inventory full!");
+                return false;
             }
-        }
 
-        // Tạo slot mới
-        if (slots.Count >= maxSlots)
-        {
-            Debug.Log("<color=red>Kho đồ đầy!</color>");
-            return false;
+            // Nếu vật phẩm chưa có, thêm một slot mới với số lượng là amount
+            inventoryItems.Add(new InventorySlot(item, amount));
+            // Thêm vật phẩm vào ItemDatabase
+            ItemDatabase.AddItem(item);
+            Debug.Log($"Thêm mới vật phẩm {item.itemName} vào kho với số lượng: {amount}");
         }
+        // Gọi UI nếu có (null-check để tránh crash ở scene không có các manager này)
+        if (PotionUI.Instance != null) PotionUI.Instance.UpdatePotionUI();
 
-        int addAmount = item.stackable ? Mathf.Min(amount, item.maxStack) : 1;
-        slots.Add(new InventorySlot(item, addAmount));
-        Debug.Log($"<color=green>+{addAmount} {item.itemName}</color>");
-        OnInventoryChanged?.Invoke();
+        // Cập nhật lại UI kho sau khi thêm vật phẩm
+        if (InventoryStaticUIController.Instance != null)
+            InventoryStaticUIController.Instance.UpdateInventorySlots();
+
+        // Tự động gán consumable/potion vào hotbar nếu còn slot trống
+        HotbarManager.Instance?.AutoAssign(item);
+
+        // Lưu kho vào tệp JSON sau khi thay đổi
+        InventoryFileHandler.SaveInventoryToFile(inventoryItems);
+        
+        OnInventoryChanged?.Invoke(); // Bắn event
         return true;
     }
 
-    /// <summary>
-    /// Xóa item khỏi kho. Trả về true nếu đủ để xóa.
-    /// </summary>
-    public bool RemoveItem(ItemData item, int amount = 1)
+    public bool HasItem(ItemData item, int amount = 1)
     {
-        if (item == null || amount <= 0) return false;
-
-        InventorySlot slot = slots.Find(s => s.item == item);
-        if (slot == null || slot.quantity < amount) return false;
-
-        slot.quantity -= amount;
-        if (slot.quantity <= 0)
-            slots.Remove(slot);
-
-        OnInventoryChanged?.Invoke();
-        return true;
+        var slot = inventoryItems.FirstOrDefault(s => s.item.itemName == item.itemName);
+        return slot != null && slot.quantity >= amount;
     }
 
-    /// <summary>
-    /// Đếm tổng số lượng của một item trong kho.
-    /// </summary>
     public int GetItemCount(ItemData item)
     {
-        int total = 0;
-        foreach (var s in slots)
-        {
-            if (s.item == item) total += s.quantity;
-        }
-        return total;
+        var slot = inventoryItems.FirstOrDefault(s => s.item.itemName == item.itemName);
+        return slot != null ? slot.quantity : 0;
     }
 
-    public bool HasItem(ItemData item)
-    {
-        return GetItemCount(item) > 0;
-    }
+
 
     /// <summary>
-    /// Tìm slot chứa item cụ thể.
-    /// </summary>
-    public InventorySlot FindSlot(ItemData item)
+    /// Xóa 1 số lượng item khỏi slot (ví dụ khi dùng hoặc vứt)
+    // Xóa vật phẩm khỏi kho (giảm số lượng hoặc xóa hẳn nếu số lượng = 0)
+    public void RemoveItem(ItemData item, int amount = 1)
     {
-        return slots.Find(s => s.item == item);
+        Debug.Log("Phương thức Remove được gọi cho vật phẩm: " + item.itemName);
+        var existingSlot = inventoryItems.FirstOrDefault(slot => slot.item.itemName == item.itemName);
+
+        if (existingSlot != null)
+        {
+            existingSlot.quantity -= amount;
+
+            // Nếu số lượng bằng 0, xóa vật phẩm khỏi kho
+            if (existingSlot.quantity <= 0)
+            {
+                inventoryItems.Remove(existingSlot);
+            }
+
+            // Debug để kiểm tra số lượng
+            Debug.Log($"Số lượng {item.itemName} còn lại trong inventory: {existingSlot.quantity}");
+
+            // Cập nhật lại UI kho sau khi xóa vật phẩm
+            if (InventoryStaticUIController.Instance != null)
+                InventoryStaticUIController.Instance.UpdateInventorySlots();
+
+            // Lưu lại inventory vào file JSON sau khi thay đổi
+            InventoryFileHandler.SaveInventoryToFile(inventoryItems);
+            OnInventoryChanged?.Invoke(); // Bắn event
+        }
+        else
+        {
+            Debug.LogWarning("Vật phẩm không có trong inventory.");
+        }
     }
+
+    private CurrencyData FindCurrencyItem(CurrencyType type)
+    {
+        foreach (var item in currencyItemDataList)
+        {
+            if (item is CurrencyData currencyItem && currencyItem.currencyType == type)
+                return currencyItem;
+        }
+        return null;
+    }
+
+
+    public void AddCurrency(CurrencyType type, int amount)
+    {
+        Debug.Log($"Adding {amount} {type} to inventory.");
+        // Tìm asset CurrencyData đúng loại
+        CurrencyData currencyItem = FindCurrencyItem(type);
+        if (currencyItem == null)
+        {
+            Debug.LogError("Chưa có asset CurrencyData cho loại tiền: " + type);
+            return;
+        }
+        AddItem(currencyItem, amount);
+    }
+
+    public int GetCurrencyAmount(CurrencyType type)
+    {
+        foreach (var slot in inventoryItems)
+        {
+            if (slot.item is CurrencyData currencyItem && currencyItem.currencyType == type)
+                return slot.quantity;
+        }
+        return 0;
+    }
+    public void ResetInventory()
+    {
+        inventoryItems.Clear();
+        Debug.Log("[InventoryManager] Đã reset inventory.");
+        // Cập nhật lại UI kho sau khi thêm vật phẩm
+        if (InventoryStaticUIController.Instance != null)
+            InventoryStaticUIController.Instance.UpdateInventorySlots();
+    }
+
+
 }

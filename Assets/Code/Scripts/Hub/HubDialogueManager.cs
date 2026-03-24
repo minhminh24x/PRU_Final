@@ -53,15 +53,15 @@ public class HubDialogueManager : MonoBehaviour
     {
         if (!dialoguePanel.activeSelf) return;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isTyping)
             {
-                // Nhấn E khi đang gõ → hiện ngay toàn bộ dòng hiện tại
+                // Space khi đang gõ → hiện ngay toàn bộ dòng hiện tại
                 StopAllCoroutines();
                 dialogueBodyText.text = currentLines[currentIndex];
                 isTyping = false;
-                if (promptText) promptText.text = "[E] Tiếp tục";
+                if (promptText) promptText.text = "[Space] Tiếp tục";
             }
             else
             {
@@ -165,7 +165,7 @@ public class HubDialogueManager : MonoBehaviour
     {
         isTyping = true;
         dialogueBodyText.text = "";
-        if (promptText) promptText.text = "[E] Bỏ qua";
+        if (promptText) promptText.text = "[Space] Bỏ qua";
 
         foreach (char c in currentLines[currentIndex])
         {
@@ -175,7 +175,7 @@ public class HubDialogueManager : MonoBehaviour
 
         isTyping = false;
         bool isLastLine = (currentIndex >= currentLines.Length - 1);
-        if (promptText) promptText.text = isLastLine ? "[E] Đóng" : "[E] Tiếp tục";
+        if (promptText) promptText.text = isLastLine ? "[Space] Đóng" : "[Space] Tiếp tục";
     }
 
     /// <summary>

@@ -13,19 +13,16 @@ MonoBehaviour:
   m_Name: HealthPotion
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Health Potion
+  itemType: 2
+  quality: 0
   icon: {fileID: 7059669463660971297, guid: 2ae9b9bbac1495046bea160425e3bf59, type: 3}
   description: Heal
-  itemType: 0
-  equipSlot: 0
-  stackable: 1
-  maxStack: 5
+  buyPrice: 50
   healAmount: 50
   manaAmount: 0
-  buffDuration: 0
   buffDamagePercent: 0
+  buffDuration: 0
   bonusDEF: 0
   bonusSTR: 0
   bonusINT: 0
   bonusAGI: 0
-  buyPrice: 50
-  sellPrice: 10

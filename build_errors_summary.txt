@@ -1,0 +1,114 @@
+﻿  Determining projects to restore...
+  All projects are up-to-date for restore.
+  UnityEngine.TestRunner -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\UnityEngine.TestRunner.dll
+  UnityEngine.UI -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\UnityEngine.UI.dll
+  UnityEditor.TestRunner -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\UnityEditor.TestRunner.dll
+  UnityEditor.UI -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\UnityEditor.UI.dll
+  Unity.InternalAPIEngineBridge.001 -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.InternalAPIEngineBridge.001.dll
+  Unity.Burst -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Burst.dll
+  Unity.Multiplayer.Center.Common -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Multiplayer.Center.Common.dll
+  Unity.Settings.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Settings.Editor.dll
+  Unity.Searcher.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Searcher.Editor.dll
+  Unity.2D.Sprite.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Sprite.Editor.dll
+  Unity.VisualStudio.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualStudio.Editor.dll
+  Unity.Timeline -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Timeline.dll
+  Unity.PlasticSCM.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.PlasticSCM.Editor.dll
+  Unity.ShaderGraph.Utilities -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.ShaderGraph.Utilities.dll
+  Unity.2D.Tilemap.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Tilemap.Editor.dll
+  Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+  Unity.Rider.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Rider.Editor.dll
+  Unity.RenderPipelines.Universal.Shaders -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Universal.Shaders.dll
+  Unity.Timeline.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Timeline.Editor.dll
+  Unity.InternalAPIEditorBridge.001 -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.InternalAPIEditorBridge.001.dll
+  Unity.Rendering.LightTransport.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Rendering.LightTransport.Editor.dll
+  Unity.InternalAPIEngineBridge.004 -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.InternalAPIEngineBridge.004.dll
+  Unity.RenderPipelines.Core.ShaderLibrary -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Core.ShaderLibrary.dll
+  Unity.2D.Tilemap.Extras -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Tilemap.Extras.dll
+  Unity.Mathematics -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Mathematics.dll
+  Unity.Multiplayer.Center.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Multiplayer.Center.Editor.dll
+  Unity.2D.Common.Path.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Common.Path.Editor.dll
+  Unity.InputSystem -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.InputSystem.dll
+  Unity.Burst.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Burst.Editor.dll
+  Unity.Mathematics.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Mathematics.Editor.dll
+  PsdPlugin -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\PsdPlugin.dll
+  Unity.2D.Aseprite.Common -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Aseprite.Common.dll
+  Unity.Collections -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Collections.dll
+  Unity.2D.Tooling.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Tooling.Editor.dll
+  Unity.Splines -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Splines.dll
+  Unity.InputSystem.ForUI -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.InputSystem.ForUI.dll
+  Unity.VisualScripting.Core -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualScripting.Core.dll
+  Unity.Collections.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Collections.Editor.dll
+  Unity.UnifiedRayTracing.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.UnifiedRayTracing.Runtime.dll
+  Unity.RenderPipelines.Core.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Core.Runtime.dll
+  Unity.2D.Common.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Common.Runtime.dll
+  Unity.TextMeshPro -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.TextMeshPro.dll
+  Unity.RenderPipeline.Universal.ShaderLibrary -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipeline.Universal.ShaderLibrary.dll
+  Unity.2D.Tilemap.Extras.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Tilemap.Extras.Editor.dll
+  Unity.2D.SpriteShape.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.SpriteShape.Runtime.dll
+  Unity.RenderPipelines.Universal.Config.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Universal.Config.Runtime.dll
+  Unity.RenderPipelines.GPUDriven.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.GPUDriven.Runtime.dll
+  Unity.2D.Common.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Common.Editor.dll
+  Unity.RenderPipelines.Core.Runtime.Shared -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Core.Runtime.Shared.dll
+  Unity.RenderPipelines.Core.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Core.Editor.dll
+  Unity.TextMeshPro.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
+  UnityEditor.UI.Analytics -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\UnityEditor.UI.Analytics.dll
+  Unity.Splines.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Splines.Editor.dll
+  Unity.VisualScripting.Core.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualScripting.Core.Editor.dll
+  Unity.RenderPipelines.Core.Editor.Shared -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Core.Editor.Shared.dll
+  Unity.ShaderGraph.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.ShaderGraph.Editor.dll
+  Unity.RenderPipelines.Universal.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Universal.Runtime.dll
+  Unity.2D.SpriteShape.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.SpriteShape.Editor.dll
+  Unity.VisualScripting.Flow -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualScripting.Flow.dll
+  Unity.2D.Animation.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Animation.Runtime.dll
+  Unity.VisualScripting.Flow.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualScripting.Flow.Editor.dll
+  Unity.VisualScripting.State -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualScripting.State.dll
+  Unity.2D.IK.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.IK.Runtime.dll
+  Unity.2D.Animation.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Animation.Editor.dll
+  Unity.RenderPipelines.Universal.2D.Runtime -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Universal.2D.Runtime.dll
+  Unity.VisualScripting.SettingsProvider.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualScripting.SettingsProvider.Editor.dll
+  Unity.VisualScripting.State.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualScripting.State.Editor.dll
+  Unity.2D.IK.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.IK.Editor.dll
+  Unity.2D.Aseprite.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Aseprite.Editor.dll
+  Unity.Cinemachine -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Cinemachine.dll
+  Unity.2D.Psdimporter.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.2D.Psdimporter.Editor.dll
+  Unity.VisualScripting.Shared.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.VisualScripting.Shared.Editor.dll
+  Unity.RenderPipelines.Universal.2D.Editor.Overrides -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Universal.2D.Editor.Overrides.dll
+  Unity.RenderPipelines.Universal.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.RenderPipelines.Universal.Editor.dll
+  PPv2URPConverters -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\PPv2URPConverters.dll
+  Unity.Cinemachine.Editor -> D:\Code\03_University\PRU213\PRU_Final\Temp\bin\Debug\Unity.Cinemachine.Editor.dll
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Managers\GameManager.cs(4,14): error CS0101: The namespace '<global namespace>' already contains a definition for 'GameManager' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Player\PlayerController.cs(4,14): error CS0101: The namespace '<global namespace>' already contains a definition for 'PlayerController' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Air\Portal.cs(6,14): error CS0101: The namespace '<global namespace>' already contains a definition for 'Portal' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Items\ItemData.cs(20,14): error CS0101: The namespace '<global namespace>' already contains a definition for 'ItemData' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Shared\UI\DialogueManager.cs(6,14): error CS0101: The namespace '<global namespace>' already contains a definition for 'DialogueManager' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_item\InventoryManager.cs(5,14): error CS0101: The namespace '<global namespace>' already contains a definition for 'InventoryManager' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Items\EquipmentManager.cs(9,14): error CS0101: The namespace '<global namespace>' already contains a definition for 'EquipmentManager' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Items\CurrencyManager.cs(8,21): error CS0101: The namespace '<global namespace>' already contains a definition for 'CurrencyManager' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Items\ItemData.cs(3,13): error CS0101: The namespace '<global namespace>' already contains a definition for 'ItemType' [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Managers\GameManager.cs(11,10): error CS0111: Type 'GameManager' already defines a member called 'Awake' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_item\InventoryManager.cs(28,18): error CS0111: Type 'InventoryManager' already defines a member called 'Awake' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_item\InventoryManager.cs(44,17): error CS0111: Type 'InventoryManager' already defines a member called 'AddItem' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_item\InventoryManager.cs(77,17): error CS0111: Type 'InventoryManager' already defines a member called 'RemoveItem' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Player\PlayerController.cs(19,10): error CS0111: Type 'PlayerController' already defines a member called 'Awake' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Player\PlayerController.cs(33,10): error CS0111: Type 'PlayerController' already defines a member called 'Start' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Player\PlayerController.cs(49,10): error CS0111: Type 'PlayerController' already defines a member called 'FixedUpdate' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Air\Portal.cs(26,18): error CS0111: Type 'Portal' already defines a member called 'OnTriggerEnter2D' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(6,32): error CS0713: Static class 'CurrencyManager' cannot derive from type 'MonoBehaviour'. Static classes must derive from object. [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(11,43): error CS0708: 'CurrencyManager.currencyAmounts': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(14,28): error CS0708: 'CurrencyManager.coinText': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(15,28): error CS0708: 'CurrencyManager.gemText': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(16,28): error CS0708: 'CurrencyManager.blueSoulText': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(17,28): error CS0708: 'CurrencyManager.purpleSoulText': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(21,10): error CS0708: 'Awake': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(37,17): error CS0708: 'AddCurrency': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(48,16): error CS0708: 'GetCurrency': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(52,17): error CS0708: 'SetCurrency': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(57,17): error CS0708: 'RemoveCurrency': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(70,18): error CS0708: 'UpdateCurrencyUI': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(88,17): error CS0708: 'ResetCurrency': cannot declare instance members in a static class [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Art\Textures\Assets\Scripts\Data_concurrency\CurrencyManager.cs(8,19): error CS0722: 'CurrencyManager': static types cannot be used as return types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Items\ItemData.cs(19,2): error CS0579: Duplicate 'CreateAssetMenu' attribute [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Items\EquipmentManager.cs(21,10): error CS0111: Type 'EquipmentManager' already defines a member called 'Awake' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+D:\Code\03_University\PRU213\PRU_Final\Assets\Code\Scripts\Items\EquipmentManager.cs(36,17): error CS0111: Type 'EquipmentManager' already defines a member called 'Equip' with the same parameter types [D:\Code\03_University\PRU213\PRU_Final\Assembly-CSharp.csproj]
+
+Workload updates are available. Run `dotnet workload list` for more information.

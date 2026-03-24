@@ -10,6 +10,9 @@ public class HotbarManager : MonoBehaviour
 {
     public static HotbarManager Instance { get; private set; }
 
+    /// <summary>Set true khi player đứng trong vùng Portal, để Portal có quyền ưu tiên phím E</summary>
+    public static bool IsEKeyClaimedByPortal = false;
+
     [Header("Hotbar Config")]
     public int slotCount = 3;
 
@@ -46,9 +49,13 @@ public class HotbarManager : MonoBehaviour
         if (Keyboard.current.digit2Key.wasPressedThisFrame) SelectSlot(1);
         if (Keyboard.current.digit3Key.wasPressedThisFrame) SelectSlot(2);
 
-        // Phím E: ưu tiên nhặt item dưới đất, nếu không có thì dùng hotbar
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        // Phím E: nhường cho Portal hoặc NPC nếu player đang đứng trong vùng tương tác
+        if (Keyboard.current.eKey.wasPressedThisFrame && !IsEKeyClaimedByPortal)
         {
+            // Nếu đang đứng cạnh Shop hoặc Shop đang mở -> Không dùng item hotbar
+            if (ShopKeeperNPC.IsAnyShopNearby || (ShopUIManager.Instance != null && ShopUIManager.Instance.shopPanel.activeSelf))
+                return;
+
             if (_nearbyPickup != null)
             {
                 // Ưu tiên nhặt item dưới đất
@@ -111,7 +118,7 @@ public class HotbarManager : MonoBehaviour
     /// </summary>
     public void AutoAssign(ItemData item)
     {
-        if (item == null || item.itemType != ItemType.Consumable) return;
+        if (item == null || (item.itemType != ItemType.Consumable && item.itemType != ItemType.Potion)) return;
 
         // Ưu tiên 1: slot đã có cùng item
         for (int i = 0; i < slotCount; i++)
@@ -145,7 +152,7 @@ public class HotbarManager : MonoBehaviour
             return;
         }
 
-        if (item.itemType != ItemType.Consumable)
+        if (item.itemType != ItemType.Consumable && item.itemType != ItemType.Potion)
         {
             Debug.Log("<color=grey>Item này không thể dùng từ hotbar!</color>");
             return;

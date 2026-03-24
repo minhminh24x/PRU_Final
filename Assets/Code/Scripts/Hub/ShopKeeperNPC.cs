@@ -14,6 +14,8 @@ public class ShopKeeperNPC : MonoBehaviour
     [Tooltip("TextMeshPro 3D phía trên NPC: '[E] Mua bán'")]
     public TextMeshPro interactPrompt;
 
+    public static bool IsAnyShopNearby { get; private set; }
+
     private bool playerNearby = false;
     private bool isShopOpen = false;
 
@@ -34,6 +36,7 @@ public class ShopKeeperNPC : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         playerNearby = true;
+        IsAnyShopNearby = true;
         if (interactPrompt) interactPrompt.gameObject.SetActive(true);
     }
 
@@ -41,6 +44,7 @@ public class ShopKeeperNPC : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         playerNearby = false;
+        IsAnyShopNearby = false;
         if (interactPrompt) interactPrompt.gameObject.SetActive(false);
 
         // Tự đóng shop nếu Player đi ra

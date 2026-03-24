@@ -28,7 +28,19 @@ public class ItemPickup : MonoBehaviour
         {
             if (hit.collider.isTrigger) continue;
             if (hit.collider.gameObject == gameObject) continue;
-            if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) continue;
+
+            // Dùng try-catch để tránh lỗi khi tag chưa được tạo trong Project Settings
+            try
+            {
+                if (hit.collider.CompareTag("Player")) continue;
+            }
+            catch { /* Tag không tồn tại, bỏ qua */ }
+
+            try
+            {
+                if (hit.collider.CompareTag("Enemy")) continue;
+            }
+            catch { /* Tag không tồn tại, bỏ qua */ }
 
             transform.position = new Vector3(transform.position.x, hit.point.y + 0.3f, transform.position.z);
             break;

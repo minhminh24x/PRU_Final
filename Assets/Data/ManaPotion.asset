@@ -13,19 +13,16 @@ MonoBehaviour:
   m_Name: ManaPotion
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Mana Potion
+  itemType: 2
+  quality: 0
   icon: {fileID: 8903106534700187994, guid: 713ab90356c74481bb8b45082bd4eb02, type: 3}
   description: Heal
-  itemType: 0
-  equipSlot: 0
-  stackable: 1
-  maxStack: 5
+  buyPrice: 50
   healAmount: 0
   manaAmount: 30
-  buffDuration: 0
   buffDamagePercent: 0
+  buffDuration: 0
   bonusDEF: 0
   bonusSTR: 0
   bonusINT: 0
   bonusAGI: 0
-  buyPrice: 50
-  sellPrice: 10

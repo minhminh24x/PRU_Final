@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078e16a7ea9caef45be5bc420879386e, type: 3}
+  m_Name: NPC_Healer
+  m_EditorClassIdentifier: 
+  npcId: healer
+  characterName: Healer
+  avatar: {fileID: 21300000, guid: 5996aa6087c5b9641b99bd80885f55bb, type: 3}
+  isQuestGiver: 0
+  defaultLines:
+  - If you feel tired or injured, Arin, just come here. I have a lot of good medicine!
+  questId: main_1_crystal
+  questOfferLines: []
+  questInProgressLines:
+  - 'If you run out of potions, come back and I will brew more for you.
+
+'
+  questSpecialLines:
+  - "I have never seen the herbs wilt overnight like this, not even in the coldest
+    winters.\r"
+  - 'Some villagers are feeling weak, but I am doing what I can.
+
+'
+  - 'Here, take these potions - one for your health, one for your magic. Stay safe,
+    Arin.
+
+'
+  rewardList:
+  - item: {fileID: 11400000, guid: 647b77454efd35b4fa1b282068d7b001, type: 2}
+    amount: 3
+  - item: {fileID: 11400000, guid: 34f2610a793ee8e4e9d04836d6d1d31f, type: 2}
+    amount: 3
+  questCompletedLines: []
+  unlockAfterQuestId: 
+  unlockedLines: []
